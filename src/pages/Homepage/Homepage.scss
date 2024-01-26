@@ -1,0 +1,44 @@
+@use "../../styles/partials/variables" as *;
+
+.homepage {
+  background-color: $secondary-colour;
+  padding: 2rem;
+  border-top: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    background-color: $primary-colour;
+    padding: 1rem;
+  }
+
+  &__intro {
+    background-color: $primary-colour;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+  }
+  &__text {
+    background-color: $primary-colour;
+    padding: 1rem;
+  }
+  &__img {
+    background-color: $primary-colour;
+    width: 60%;
+  }
+  &__nav {
+    background-color: $primary-colour;
+    display: flex;
+    justify-content: space-around;
+    &-link {
+      //   margin-inline: 1rem;
+      text-decoration: none;
+      color: black;
+      border: 2px solid black;
+      padding-inline: 2rem;
+    }
+  }
+}
