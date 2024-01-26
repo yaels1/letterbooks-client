@@ -112,12 +112,6 @@ theme table:
 - theme id
 - theme
 
-join table:
-
-- id
-- book id
-- theme id
-
 #### Nice to have
 
 link to api to get larger range of books and information about the books, e.g. ratings
@@ -148,8 +142,6 @@ List endpoints that your server will implement, including HTTP methods, paramete
 
 - add information from questionnaire to find the book(s) that meet the most requirements
 
-#### Nice to have
-
 **POST /users/register**
 
 - Add a user account
@@ -157,6 +149,8 @@ List endpoints that your server will implement, including HTTP methods, paramete
 **POST /users/login**
 
 - Login a user
+
+#### Nice to have
 
 **GET /list/wishlist**
 
