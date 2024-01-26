@@ -1,20 +1,28 @@
 import { NavLink } from "react-router-dom";
 
+import "./Header.scss";
+import logo from "../../assets/logo/books-stack-of-three (1).png";
+
 const Header = () => {
   return (
     <div>
-      <header>
-        <div>
-          {/* <img to logo/> */}
-          <h1>Letterbooks</h1>
+      <header className="header">
+        <div className="header__title">
+          <img src={logo} className="header__logo" />
+          <h1>LETTERBOOKS</h1>
         </div>
-        <nav>
-          {/* link to home */}
-          <NavLink to="/">Home</NavLink>
-          {/* link to profile */}
-          <NavLink to="/profile">Profile</NavLink>
-          {/* link to questionnaire */}
-          <NavLink to="/questionnaire">Questionnaire</NavLink>
+        <nav className=" nav">
+          <NavLink to="/" className="nav__header">
+            HOME
+          </NavLink>
+
+          <NavLink to="/profile" className="nav__header">
+            PROFILE
+          </NavLink>
+
+          <NavLink to="/questionnaire" className="nav__header">
+            QUESTIONNAIRE
+          </NavLink>
         </nav>
       </header>
     </div>
