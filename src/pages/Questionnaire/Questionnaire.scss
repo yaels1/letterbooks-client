@@ -1,0 +1,34 @@
+@use "../../styles//partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+main {
+  background-color: $secondary-colour;
+  padding: 2rem;
+}
+
+.intro {
+  background-color: $primary-colour;
+  padding: 1rem;
+  border: 2px solid black;
+  margin: 1rem;
+}
+
+.form {
+  background-color: $primary-colour;
+  padding: 1rem;
+  border: 2px solid black;
+  margin: 1rem;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+
+  &__container {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__question {
+    font-weight: 500;
+  }
+}
