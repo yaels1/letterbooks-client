@@ -15,7 +15,11 @@ const Questionnaire = () => {
   });
   const [listAllBooks, setListAllBooks] = useState([]);
   const [menuTheme, setMenuTheme] = useState([]);
-  const [bookLength, setBookLength] = useState([]);
+  const [bookLength, setBookLength] = useState({
+    areSmallBooks: false,
+    areMediumBooks: false,
+    areLargeBooks: false,
+  });
 
   const handleAnswer = (event) => {
     const { name, value } = event.target;
@@ -40,6 +44,9 @@ const Questionnaire = () => {
   useEffect(() => {
     // console.log(answer.question1);
     // console.log(answer.question2);
+    // console.log(answer.question3);
+
+    // filter for theme
     const filteredBooksTheme = listAllBooks.filter((book) => {
       if (answer.question1 == "fiction" && book.fiction) {
         return book;
@@ -50,51 +57,43 @@ const Questionnaire = () => {
     const themes = new Array(
       ...new Set(filteredBooksTheme.map((book) => book.themes).flat())
     );
-    // console.log(themes);
 
     setMenuTheme(themes);
   }, [answer.question1]);
 
-  // filter through questions for pages
   useEffect(() => {
-    // console.log(answer.question3);
+    if (!answer.question2) {
+      return;
+    }
 
-    const filteredBooksLength = listAllBooks.filter((book) => {
-      const isUnder500 =
-        answer.question1 && answer.question2 && book.pages.data < 500;
-      const isBetween500And800 = book.pages.data > 500 && book.pages.data < 800;
-      const isAbove800 =
-        answer.question1 && answer.question2 && book.pages.data > 800;
-
-      const isFilterValid = () => {
-        if (isUnder500 || isBetween500And800 || isAbove800) {
-          return true;
-        }
-      };
-
-      if (isUnder500) {
-        return "small";
-      }
-      if (isBetween500And800) {
-        return "medium";
-      }
-      if (isAbove800) {
-        return "large";
+    const filteredBookLength = listAllBooks.filter((book) => {
+      if (
+        answer.question1 == "fiction" &&
+        book.fiction &&
+        book.themes.includes(answer.question2)
+      ) {
+        return true;
       }
 
-      return false;
-      isFilterValid();
+      if (
+        answer.question1 == "non-fiction" &&
+        !book.fiction &&
+        book.themes.includes(answer.question2)
+      ) {
+        return true;
+      }
     });
 
-    const uniqueBookLengths = [
-      ...new Set(filteredBooksLength.map((book) => book.pages.data).flat()),
-    ];
-    // console.log(uniqueBookLengths);
+    console.log(filteredBookLength);
 
-    setBookLength(uniqueBookLengths);
+    const areSmallBooks = filteredBookLength.some((book) => book.pages < 500);
+    const areMediumBooks = filteredBookLength.some(
+      (book) => book.pages > 500 && book.pages < 800
+    );
+    const areLargeBooks = filteredBookLength.some((book) => book.pages > 800);
 
-    console.log(filteredBooksLength);
-  }, [answer.question1, answer.question2, answer.question3, listAllBooks]);
+    setBookLength({ areSmallBooks, areMediumBooks, areLargeBooks });
+  }, [answer.question2]);
 
   const isFormValid = () => {
     if (!answer.question1 || !answer.question2) {
@@ -115,7 +114,7 @@ const Questionnaire = () => {
         );
         navigate("/list/recommendations");
         setAnswer(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -199,12 +198,9 @@ const Questionnaire = () => {
             onChange={handleAnswer}
           >
             <option value="0">select length</option>
-            {/* if isUnder500 */}
-            <option value="1">small</option>
-            {/* if isBetween500And800 */}
-            <option value="2">medium</option>
-            {/* if isAbove800 */}
-            <option value="3">large</option>
+            {bookLength.areSmallBooks && <option>Small</option>}
+            {bookLength.areMediumBooks && <option>Medium</option>}
+            {bookLength.areLargeBooks && <option>Large</option>}
           </select>
         </div>
 
