@@ -1,0 +1,23 @@
+@use "../../styles//partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+
+.results {
+  background-color: $secondary-colour;
+  padding: 2rem;
+
+  &__container {
+    background-color: $primary-colour;
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    // width: fit-content;
+  }
+  &__image {
+    padding: 3rem;
+  }
+
+  &__text {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+}
