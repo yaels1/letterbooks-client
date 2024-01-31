@@ -27,6 +27,13 @@ const HomePage = () => {
           <Link to="/questionnaire" className="homepage__nav-link">
             <p>questionnaire</p>
           </Link>
+
+          <Link to="/login" className="homepage__nav-link">
+            <p>login</p>
+          </Link>
+          <Link to="/signup" className="homepage__nav-link">
+            <p>signup</p>
+          </Link>
         </div>
       </div>
     </main>

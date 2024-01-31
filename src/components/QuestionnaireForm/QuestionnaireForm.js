@@ -39,9 +39,9 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
   function filterByFiction(books) {
     return books.filter((book) => {
-      if (answer.question1 == "fiction" && book.fiction) {
+      if (answer.question1 === "fiction" && book.fiction) {
         return book;
-      } else if (answer.question1 == "non-fiction" && !book.fiction) {
+      } else if (answer.question1 === "non-fiction" && !book.fiction) {
         return book;
       }
     });
@@ -68,15 +68,15 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
   function filterBySize(books, size) {
     return books.filter((book) => {
-      if (size == "small" && book.pages < 500) {
+      if (size === "small" && book.pages < 500) {
         return true;
       }
 
-      if (size == "medium" && book.pages > 500 && book.pages < 800) {
+      if (size === "medium" && book.pages > 500 && book.pages < 800) {
         return true;
       }
 
-      if (size == "large" && book.pages > 800) {
+      if (size === "large" && book.pages > 800) {
         return true;
       }
     });
