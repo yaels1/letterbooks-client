@@ -4,6 +4,7 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Homepage from "./pages/Homepage/Homepage";
 import SingleBook from "./pages/Book/Book";
+import AllBooks from "./components/AllBooks/AllBooks";
 import Questionnaire from "./pages/Questionnaire/Questionnaire";
 import Profile from "./pages/Profile/Profile";
 import Login from "./pages/Login/Login";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/book/:id" element={<SingleBook />} />
+        <Route path="/book" element={<AllBooks />} />
 
         {/* <Route path="/list" element={<List />} />
         <Route path="/list/read" element={<ReadList />} />

@@ -1,0 +1,44 @@
+@use "../../styles/partials/variables" as *;
+
+.Profile {
+  background-color: $secondary-colour;
+  padding: 2rem;
+
+  &__title {
+    background-color: $primary-colour;
+    padding: 1rem;
+  }
+  &__info {
+    background-color: $primary-colour;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    &-text {
+      border: 1px solid black;
+      padding: 1rem;
+    }
+    &-img {
+      border: 1px solid black;
+    }
+  }
+
+  &__nav {
+    background-color: $secondary-colour;
+    display: flex;
+    justify-content: space-between;
+    padding-block: 1rem;
+
+    &-link {
+      background-color: $primary-colour;
+      text-decoration: none;
+      color: black;
+      padding: 0.5rem 1rem;
+      border: 1px solid black;
+      font-weight: 500;
+
+      &:hover {
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+}

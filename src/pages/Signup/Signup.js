@@ -18,7 +18,9 @@ function Signup() {
         password: event.target.password.value,
         first_name: event.target.first_name.value,
         last_name: event.target.last_name.value,
+        age: event.target.age.value,
         phone: event.target.phone.value,
+        fav_book: event.target.fav_book.value,
         address: event.target.address.value,
       });
       navigate("/login");
@@ -36,15 +38,19 @@ function Signup() {
         <Input type="text" name="first_name" label="First name" />
         <Input type="text" name="last_name" label="Last name" />
         <Input type="text" name="phone" label="Phone" />
+        <Input type="text" name="age" label="Age" />
         <Input type="text" name="address" label="Address" />
+        <Input type="text" name="fav_book" label="Favourite book" />
         <Input type="text" name="email" label="Email" />
         <Input type="password" name="password" label="Password" />
         <button className="signup__button">Sign up</button>
         <p>{error}</p>
       </form>
-      <p>
-        Have an account? <Link to="/login">Log in</Link>
-      </p>
+      <div className="signup__check">
+        <p>Have an account?</p>
+
+        <Link to="/login">Log in</Link>
+      </div>
     </main>
   );
 }

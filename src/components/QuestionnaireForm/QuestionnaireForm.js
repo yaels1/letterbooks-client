@@ -68,15 +68,15 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
   function filterBySize(books, size) {
     return books.filter((book) => {
-      if (size === "small" && book.pages < 500) {
+      if (size === "small" && book.pages < 350) {
         return true;
       }
 
-      if (size === "medium" && book.pages > 500 && book.pages < 800) {
+      if (size === "medium" && book.pages > 350 && book.pages < 550) {
         return true;
       }
 
-      if (size === "large" && book.pages > 800) {
+      if (size === "large" && book.pages > 550) {
         return true;
       }
     });
@@ -92,11 +92,11 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
       answer.question2
     );
 
-    const areSmallBooks = filteredBookLength.some((book) => book.pages < 500);
+    const areSmallBooks = filteredBookLength.some((book) => book.pages < 350);
     const areMediumBooks = filteredBookLength.some(
-      (book) => book.pages > 500 && book.pages < 800
+      (book) => book.pages > 350 && book.pages < 550
     );
-    const areLargeBooks = filteredBookLength.some((book) => book.pages > 800);
+    const areLargeBooks = filteredBookLength.some((book) => book.pages > 550);
 
     setBookLength({ areSmallBooks, areMediumBooks, areLargeBooks });
   }, [answer.question2]);

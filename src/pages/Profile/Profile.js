@@ -1,7 +1,7 @@
 import "./Profile.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -66,28 +66,38 @@ function Profile() {
     <main className="Profile">
       <h1 className="Profile__title">Profile</h1>
 
-      <div>
-        <p>
-          Welcome back, {user.first_name} {user.last_name}
-        </p>
+      <div className="Profile__info">
+        <div className="Profile__info-text">
+          <p>
+            Welcome back, {user.first_name} {user.last_name}
+          </p>
 
-        <h2>My Profile</h2>
-        <p>Email: {user.email}</p>
-        <p>Phone: {user.phone}</p>
-        <p>Address: {user.address}</p>
-        <p>You are a {user.role} </p>
-        <button className="Profile__logout" onClick={handleLogout}>
-          Log out
-        </button>
+          <h2>My Profile</h2>
+          <p>Email: {user.email}</p>
+          <p>Phone: {user.phone}</p>
+          <p>Address: {user.address}</p>
+          <p>Age: {user.age}</p>
+          <p>You are a {user.role} </p>
+          <button className="Profile__logout" onClick={handleLogout}>
+            Log out
+          </button>
+        </div>
+        <div className="Profile__info-img">
+          <p>your favourite book is</p>
+          <p>fav book: {user.fav_book}</p>
+        </div>
       </div>
-      <div>
-        <Link to="/homepage" className="homepage__nav-link">
-          <p>home</p>
-        </Link>
+      <div className="Profile__nav">
+        <NavLink to="/homepage" className="Profile__nav-link">
+          home
+        </NavLink>
 
-        <Link to="/questionnaire" className="homepage__nav-link">
-          <p>questionnaire</p>
-        </Link>
+        <NavLink to="/list/read" className="Profile__nav-link">
+          read books
+        </NavLink>
+        <NavLink to="/questionnaire" className="Profile__nav-link">
+          questionnaire
+        </NavLink>
       </div>
     </main>
   );
