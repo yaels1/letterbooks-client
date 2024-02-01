@@ -120,12 +120,14 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
       );
 
       setAnswerBooks(selectedBooks);
+      localStorage.setItem("bookRecs", JSON.stringify(selectedBooks));
       setSubmitted(true);
-      // console.log(response.data);
     } else {
       console.log("pls answer all necessary questions");
     }
   };
+
+  const [bookRecs, setBookRecs] = useState("");
 
   return (
     <main>

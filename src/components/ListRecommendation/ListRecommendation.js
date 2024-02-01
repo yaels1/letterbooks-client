@@ -1,12 +1,15 @@
-import "./QuestionnaireResults.scss";
-
-import React from "react";
+import "./ListRecommendation.scss";
 import { Link } from "react-router-dom";
 
-function QuestionnaireResults({ answerBooks }) {
+const ListRecommendation = () => {
+  const str = localStorage.getItem("bookRecs");
+  const bookRecList = JSON.parse(str);
+
+  console.log(bookRecList);
+
   return (
     <div className="results">
-      {answerBooks.map((book) => (
+      {bookRecList.map((book) => (
         <Link
           to={`/book/${book.id}`}
           key={book.id}
@@ -24,5 +27,6 @@ function QuestionnaireResults({ answerBooks }) {
       ))}
     </div>
   );
-}
-export default QuestionnaireResults;
+};
+
+export default ListRecommendation;

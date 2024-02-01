@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import QuestionnaireForm from "../../components/QuestionnaireForm/QuestionnaireForm";
-import QuestionnaireResults from "../../components/QuestionnaireResults/QuestionnaireResults";
+import ListRecommendation from "../../components/ListRecommendation/ListRecommendation";
+
 function Questionnaire({}) {
   const [submitted, setSubmitted] = useState(false);
   const [answerBooks, setAnswerBooks] = useState([]);
@@ -13,7 +14,7 @@ function Questionnaire({}) {
           setAnswerBooks={setAnswerBooks}
         />
       )}
-      {submitted && <QuestionnaireResults answerBooks={answerBooks} />}
+      {submitted && <ListRecommendation />}
     </div>
   );
 }

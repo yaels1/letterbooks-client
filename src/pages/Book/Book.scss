@@ -1,30 +1,24 @@
-@use "../../styles/partials/variables" as *;
+@use "../../styles//partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
 
-.book {
-  padding: 2rem;
+.allbooks {
   background-color: $secondary-colour;
+  padding: 2rem;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  &__container {
+    background-color: $primary-colour;
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    // width: fit-content;
+  }
+  &__image {
+    padding: 2rem;
+    width: 15rem;
+  }
 
-  &__cover {
-    width: fit-content;
-    height: 40vh;
-    background-color: $primary-colour;
-    padding: 1rem;
-  }
-  &__title {
-    background-color: $primary-colour;
-    padding: 1rem;
-  }
-  &__author {
-    background-color: $primary-colour;
-    padding: 1rem;
-  }
-  &__summary {
-    background-color: $primary-colour;
-    padding: 2rem 3rem;
-    margin-inline: 4rem;
+  &__text {
+    font-size: 1.25rem;
+    font-weight: 500;
   }
 }

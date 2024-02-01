@@ -1,24 +1,25 @@
 @use "../../styles//partials/variables" as *;
 @use "../../styles/partials/fonts" as *;
 
-.allbooks {
-  background-color: $secondary-colour;
-  padding: 2rem;
-
+.list {
   &__container {
     background-color: $primary-colour;
+
     display: flex;
+    justify-content: center;
     align-items: center;
-    border: 2px solid black;
-    // width: fit-content;
-  }
-  &__image {
-    padding: 2rem;
-    width: 15rem;
   }
 
-  &__text {
-    font-size: 1.25rem;
+  &__title {
+    text-decoration: none;
+  }
+
+  &__title {
+    background-color: $primary-colour;
+    text-decoration: none;
+    color: black;
+    padding: 0.5rem 1rem;
+
     font-weight: 500;
   }
 }

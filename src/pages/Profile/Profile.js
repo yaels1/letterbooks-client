@@ -91,7 +91,9 @@ function Profile() {
         <NavLink to="/homepage" className="Profile__nav-link">
           home
         </NavLink>
-
+        <NavLink to="/book" className="Profile__nav-link">
+          all books
+        </NavLink>
         <NavLink to="/list/read" className="Profile__nav-link">
           read books
         </NavLink>

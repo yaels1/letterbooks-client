@@ -1,0 +1,30 @@
+@use "../../styles/partials/variables" as *;
+
+.book {
+  padding: 2rem;
+  background-color: $secondary-colour;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__cover {
+    width: fit-content;
+    height: 40vh;
+    background-color: $primary-colour;
+    padding: 1rem;
+  }
+  &__title {
+    background-color: $primary-colour;
+    padding: 1rem;
+  }
+  &__author {
+    background-color: $primary-colour;
+    padding: 1rem;
+  }
+  &__summary {
+    background-color: $primary-colour;
+    padding: 2rem 3rem;
+    margin-inline: 4rem;
+  }
+}
