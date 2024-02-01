@@ -2,6 +2,8 @@ import "./Profile.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import happyBook from "../../assets/images/coffee-book.jpg";
+import happyFace from "../../assets/logo/happy-face.png";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -81,9 +83,12 @@ function Profile() {
             Log out
           </button>
         </div>
-        <div className="Profile__info-img">
+        <div className="Profile__info-img-container">
           <p>your favourite book is</p>
           <p>fav book: {user.fav_book}</p>
+          <p>here's another nice cosy photo</p>
+          <img src={happyFace} className="Profile__info-logo" />
+          <img src={happyBook} className="Profile__info-img" />
         </div>
       </div>
       <div className="Profile__nav">

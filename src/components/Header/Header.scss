@@ -1,13 +1,11 @@
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .header {
-  // background-color: $secondary-colour;
   padding: 2rem;
 
   &__title {
-    background-color: $primary-colour;
-    border: 3px solid black;
-    color: black;
+    @include block;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,20 +20,13 @@
 }
 
 .nav {
-  // background-color: $secondary-colour;
   display: flex;
   justify-content: space-between;
+  margin-block: 1rem;
 
   &__header {
-    background-color: $primary-colour;
-    text-decoration: none;
-    color: black;
+    @include block;
+    @include link;
     padding: 0.5rem 1rem;
-    border: 1px solid black;
-    font-weight: 500;
-
-    &:hover {
-      border-bottom: 1px solid black;
-    }
   }
 }
