@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 *,
 *:before,
 *:after {
@@ -9,4 +11,5 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: $secondary-colour;
 }

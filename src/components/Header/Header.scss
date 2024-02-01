@@ -1,7 +1,7 @@
 @use "../../styles/partials/variables" as *;
 
 .header {
-  background-color: $secondary-colour;
+  // background-color: $secondary-colour;
   padding: 2rem;
 
   &__title {
@@ -22,7 +22,7 @@
 }
 
 .nav {
-  background-color: $secondary-colour;
+  // background-color: $secondary-colour;
   display: flex;
   justify-content: space-between;
 
