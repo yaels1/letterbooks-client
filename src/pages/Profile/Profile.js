@@ -18,7 +18,6 @@ function Profile() {
       }
 
       try {
-        // Get the data from the API
         const { data } = await axios.get(
           `${apiUrl}/letterbooks/users/profile`,
           {

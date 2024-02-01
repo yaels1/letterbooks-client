@@ -49,10 +49,6 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
   //   filter through questions for themes
   useEffect(() => {
-    // console.log(answer.question1);
-    // console.log(answer.question2);
-    // console.log(answer.question3);
-
     // filter for theme
     const filteredBooksTheme = filterByFiction(listAllBooks);
     const themes = new Array(
@@ -126,8 +122,6 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
       console.log("pls answer all necessary questions");
     }
   };
-
-  const [bookRecs, setBookRecs] = useState("");
 
   return (
     <main>
@@ -211,7 +205,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
             {bookLength.areLargeBooks && <option value="large">Large</option>}
           </select>
         </div>
-
+        {/* button */}
         <div className="form__container form__button">
           <button className="form__button-submit">GET RECOMMENDATION!</button>
 
