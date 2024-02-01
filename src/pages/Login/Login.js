@@ -19,7 +19,7 @@ function Login() {
         password: event.target.password.value,
       });
 
-      sessionStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.token);
 
       navigate("/profile");
     } catch (error) {

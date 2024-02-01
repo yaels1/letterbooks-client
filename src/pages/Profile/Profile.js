@@ -11,7 +11,7 @@ function Profile() {
 
   useEffect(() => {
     const loadData = async () => {
-      const token = sessionStorage.getItem("token");
+      const token = localStorage.getItem("token");
 
       if (!token) {
         return setFailedAuth(true);
@@ -38,7 +38,7 @@ function Profile() {
   }, []);
 
   const handleLogout = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     setUser(null);
     setFailedAuth(true);
   };
@@ -91,7 +91,7 @@ function Profile() {
         <NavLink to="/homepage" className="Profile__nav-link">
           home
         </NavLink>
-        <NavLink to="/book" className="Profile__nav-link">
+        <NavLink to="/list/book" className="Profile__nav-link">
           all books
         </NavLink>
         <NavLink to="/list/read" className="Profile__nav-link">

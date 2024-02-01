@@ -15,7 +15,7 @@ const ListRecommendation = () => {
           key={book.id}
           className="results__container"
         >
-          <img src={book.image} className="results__image" />
+          <img src={book.image} className="results__image" alt="" />
           <div>
             <p className="results__text results__title">Title: {book.title}</p>
             <p className="results__text results__author">Author: {book.name}</p>

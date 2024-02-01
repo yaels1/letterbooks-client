@@ -25,14 +25,22 @@ const SingleBook = () => {
     fetchBookData();
   }, []);
 
+  const addBook = async () => {
+    const response = await axios.post(`${apiUrl}/letterbooks/book`);
+  };
+
   if (!book) return <h1>Loading...</h1>;
   return (
     <main>
       <div className="book">
-        <img className="book__cover" alt="book cover" src={book.image} />
+        <img className="book__cover" src={book.image} alt="" />
         <p className="book__title">{book.title}</p>
         <p className="book__author">{book.name}</p>
         <p className="book__summary">{book.summary}</p>
+
+        <div className="book-button">
+          <p className="book__button-text">add book to list of read books</p>
+        </div>
       </div>
     </main>
   );
