@@ -1,20 +1,27 @@
+import "./Questionnaire.scss";
+
 import React, { useState } from "react";
 import QuestionnaireForm from "../../components/QuestionnaireForm/QuestionnaireForm";
-import ListRecommendation from "../../components/ListRecommendation/ListRecommendation";
+
+import { Link } from "react-router-dom";
 
 function Questionnaire({}) {
   const [submitted, setSubmitted] = useState(false);
   const [answerBooks, setAnswerBooks] = useState([]);
 
   return (
-    <div>
+    <div className="submitted">
       {!submitted && (
         <QuestionnaireForm
           setSubmitted={setSubmitted}
           setAnswerBooks={setAnswerBooks}
         />
       )}
-      {submitted && <ListRecommendation />}
+      {submitted && (
+        <Link to="/list/recommendations" className="submitted__link">
+          <p className="submitted__link-text">Get your recommendations here</p>
+        </Link>
+      )}
     </div>
   );
 }

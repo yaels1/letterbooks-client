@@ -1,0 +1,20 @@
+@use "../../styles//partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+
+.submitted {
+  background-color: $secondary-colour;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  &__link {
+    &-text {
+      background-color: $primary-colour;
+      width: fit-content;
+      text-decoration: none;
+      color: black;
+      padding: 0.5rem 1rem;
+      border: 1px solid black;
+      font-weight: 500;
+    }
+  }
+}
