@@ -1,10 +1,13 @@
 import "./Profile.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import happyBook from "../../assets/images/coffee-book.jpg";
 import happyFace from "../../assets/logo/happy-face.png";
 import bookLogo from "../../assets/logo/books-stack-of-three (1).png";
+import sadFace from "../../assets/logo/sad-face.png";
+import arrowRight from "../../assets/logo/arrow-right.png";
+import arrowLeft from "../../assets/logo/arrow-left.png";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -47,11 +50,17 @@ function Profile() {
 
   if (failedAuth) {
     return (
-      <main className="Profile">
+      <main className="Profile__no">
         <p>You must be logged in to see this page.</p>
-        <p>
-          <Link to="/login">Log in</Link>
-        </p>
+        <img src={sadFace} className="Profile__no-logo" />
+
+        <div className="Profile__no-login">
+          <img src={arrowRight} className="Profile__no-arrow" />
+          <NavLink to="/login" className="Profile__no-link">
+            Log in
+          </NavLink>
+          <img src={arrowLeft} className="Profile__no-arrow" />
+        </div>
       </main>
     );
   }
