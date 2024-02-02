@@ -2,7 +2,7 @@ import "./SingleBook.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
@@ -58,11 +58,9 @@ const SingleBook = () => {
         <p className="book__author">{book.name}</p>
         <p className="book__summary">{book.summary}</p>
 
-        {/* <Link to="/list/recommendations"> */}
         <button onClick={addBook} className="book-button">
           <p className="book__button-text">add book to list of read books</p>
         </button>
-        {/* </Link> */}
       </div>
     </main>
   );
