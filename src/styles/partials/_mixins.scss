@@ -2,8 +2,6 @@
 
 @mixin block {
   border-radius: 4px;
-  padding: 1rem;
-  margin-block: 1rem;
   border: 2px solid $secondary-colour;
   color: $primary-text-colour;
   -webkit-box-shadow: 0 0 10px $secondary-colour;
@@ -15,6 +13,7 @@
   background-color: #8f00ff80;
   color: $primary-text-colour;
   font-weight: 500;
+  border-radius: 4px;
   &:hover {
     background-color: $select-colour;
     border-bottom: 4px solid black;
@@ -33,4 +32,5 @@
   border: 2px solid $secondary-colour;
   color: $primary-text-colour;
   padding: 0.5rem 1rem;
+  border-radius: 4px;
 }

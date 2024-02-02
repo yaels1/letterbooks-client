@@ -1,36 +1,83 @@
-@use "../../styles/partials/variables" as *;
+@use "../../styles//partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+// .book {
+//   padding: 2rem;
+//   @include block;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+
+//   &__cover {
+//     width: fit-content;
+//     height: 40vh;
+//     background-color: $primary-colour;
+//     padding: 1rem;
+//   }
+//   &__title {
+//     background-color: $primary-colour;
+//     padding: 1rem;
+//   }
+//   &__author {
+//     background-color: $primary-colour;
+//     padding: 1rem;
+//   }
+//   &__summary {
+//     background-color: $primary-colour;
+//     padding: 2rem 3rem;
+//     margin-inline: 4rem;
+//   }
+
+//   &__button {
+//     &-text {
+//       background-color: $primary-colour;
+//       padding: 1rem;
+//     }
+//   }
+// }
 
 .book {
+  @include block;
   padding: 2rem;
-  // background-color: $secondary-colour;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  &__cover {
-    width: fit-content;
-    height: 40vh;
-    background-color: $primary-colour;
+  &__container {
+    @include link;
+    display: flex;
+
+    align-items: flex-start;
     padding: 1rem;
   }
-  &__title {
-    background-color: $primary-colour;
-    padding: 1rem;
+  &__image {
+    padding: 2rem;
+    width: 15rem;
+    @include link;
   }
-  &__author {
-    background-color: $primary-colour;
-    padding: 1rem;
+  &__container-text {
+    display: flex;
+    flex-direction: column;
   }
+
+  &__text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding-inline: 1rem;
+  }
+
   &__summary {
-    background-color: $primary-colour;
-    padding: 2rem 3rem;
-    margin-inline: 4rem;
+    font-size: 1rem;
   }
 
   &__button {
+    background-color: $secondary-colour;
+    border: none;
+    width: fit-content;
+
     &-text {
-      background-color: $primary-colour;
+      @include link;
       padding: 1rem;
     }
   }

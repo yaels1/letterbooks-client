@@ -97,25 +97,25 @@ function Profile() {
           <img src={bookLogo} className="Profile__info-logo" />
         </div>
         <div className="Profile__info-img-container">
-          <p>your favourite book is</p>
-          <p>fav book: {user.fav_book}</p>
-          <p>here's another nice cosy photo</p>
+          <p>Your favourite book is:</p>
+          <p> {user.fav_book}</p>
+          <p>Here's another nice cosy photo just for fun</p>
           <img src={happyFace} className="Profile__info-logo" />
           <img src={happyBook} className="Profile__info-img" />
         </div>
       </div>
       <div className="Profile__nav">
         <NavLink to="/homepage" className="Profile__nav-link">
-          home
+          HOME
         </NavLink>
         <NavLink to="/list/book" className="Profile__nav-link">
-          all books
+          ALL BOOKS
         </NavLink>
         <NavLink to="/list/read" className="Profile__nav-link">
-          read books
+          READ BOOKS
         </NavLink>
         <NavLink to="/questionnaire" className="Profile__nav-link">
-          questionnaire
+          QUESTIONNAIRE
         </NavLink>
       </div>
     </main>

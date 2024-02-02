@@ -2,7 +2,7 @@ import "./Book.scss";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -23,10 +23,12 @@ const AllBooks = () => {
 
   if (!allBooks) return <h1>Loading...</h1>;
 
+  console.log(allBooks);
+
   return (
     <div className="allbooks">
       {allBooks.map((aBook) => (
-        <Link
+        <NavLink
           to={`/book/${aBook.id}`}
           key={aBook.id}
           className="allbooks__container"
@@ -42,8 +44,11 @@ const AllBooks = () => {
             <p className="allbooks__text allbooks__pages">
               No. of Pages: {aBook.pages}
             </p>
+            <p className="allbooks__text allbooks__themes">
+              Themes: {aBook.themes.join(", ")}
+            </p>
           </div>
-        </Link>
+        </NavLink>
       ))}
     </div>
   );

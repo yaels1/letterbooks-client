@@ -1,16 +1,16 @@
 @use "../../styles//partials/variables" as *;
 @use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
 
 .allbooks {
-  // background-color: $secondary-colour;
+  @include block;
   padding: 2rem;
 
   &__container {
-    background-color: $primary-colour;
+    @include link;
     display: flex;
     align-items: center;
     border: 2px solid black;
-    // width: fit-content;
   }
   &__image {
     padding: 2rem;

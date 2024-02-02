@@ -26,9 +26,6 @@
       align-items: center;
     }
 
-    // &__logout {
-    // }
-
     &-img-container {
       @include block;
 
@@ -44,6 +41,9 @@
       width: 15%;
     }
   }
+  &__logout {
+    @include select;
+  }
 
   &__nav {
     display: flex;
@@ -54,6 +54,7 @@
     &-link {
       @include block;
       @include link;
+      padding: 0.5rem;
       margin-inline: 1rem;
     }
   }

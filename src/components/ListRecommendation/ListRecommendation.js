@@ -1,5 +1,5 @@
 import "./ListRecommendation.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const ListRecommendation = () => {
   const str = localStorage.getItem("bookRecs");
@@ -10,20 +10,20 @@ const ListRecommendation = () => {
   return (
     <div className="results">
       {bookRecList.map((book) => (
-        <Link
+        <NavLink
           to={`/book/${book.id}`}
           key={book.id}
           className="results__container"
         >
           <img src={book.image} className="results__image" alt="" />
-          <div>
+          <div className="results__info">
             <p className="results__text results__title">Title: {book.title}</p>
             <p className="results__text results__author">Author: {book.name}</p>
             <p className="results__text results__pages">
               No. of Pages: {book.pages}
             </p>
           </div>
-        </Link>
+        </NavLink>
       ))}
     </div>
   );

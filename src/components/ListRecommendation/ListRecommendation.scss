@@ -1,0 +1,27 @@
+@use "../../styles//partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+.results {
+  &__container {
+    @include block;
+    @include link;
+    display: flex;
+    background-color: $secondary-colour;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__image {
+    width: 15%;
+    margin-inline: 2rem;
+  }
+
+  &__text {
+    font-size: 1.3rem;
+  }
+}

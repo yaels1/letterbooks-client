@@ -43,7 +43,7 @@ const SingleBook = () => {
         user_id: decoded.id,
       });
 
-      navigate("/list/recommendations");
+      navigate("/list");
     } catch (error) {
       console.error(error);
     }
@@ -53,13 +53,16 @@ const SingleBook = () => {
   return (
     <main>
       <div className="book">
-        <img className="book__cover" src={book.image} alt="" />
-        <p className="book__title">{book.title}</p>
-        <p className="book__author">{book.name}</p>
-        <p className="book__summary">{book.summary}</p>
-
-        <button onClick={addBook} className="book-button">
-          <p className="book__button-text">add book to list of read books</p>
+        <div className="book__container">
+          <img className="book__image" src={book.image} alt="" />
+          <div className="book__container-text">
+            <p className="book__text book__title">{book.title}</p>
+            <p className="book__text book__author">{book.name}</p>
+            <p className="book__text book__summary">{book.summary}</p>
+          </div>
+        </div>
+        <button onClick={addBook} className="book__button">
+          <p className="book__button-text">ADD BOOK TO LIST OF READ BOOKS</p>
         </button>
       </div>
     </main>
