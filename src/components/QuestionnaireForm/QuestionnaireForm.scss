@@ -1,34 +1,69 @@
 @use "../../styles//partials/variables" as *;
 @use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
 main {
-  // background-color: $secondary-colour;
   padding: 2rem;
 }
 
 .intro {
-  background-color: $primary-colour;
-  padding: 1rem;
-  border: 2px solid black;
-  margin: 1rem;
+  @include block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__header {
+    border-bottom: 1px solid black;
+    margin-top: 0.5rem;
+    padding-inline: 1rem;
+    width: 40%;
+
+    &-logo {
+      width: 10%;
+      margin-inline: 0.5rem;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 2rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
 }
 
 .form {
-  background-color: $primary-colour;
-  padding: 1rem;
-  border: 2px solid black;
-  margin: 1rem;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
+  @include block;
 
   &__container {
-    border: 2px solid black;
+    @include block;
     display: flex;
+
     flex-direction: column;
     align-items: center;
   }
 
   &__question {
     font-weight: 500;
+  }
+
+  &__button {
+    &-submit {
+      margin-block: 1rem;
+    }
+
+    &-cancel {
+      @include link;
+      color: $primary-text-colour;
+    }
+
+    &-cancel-text {
+      padding: 0.5rem;
+      margin: 0;
+      &:hover {
+        color: $cancel-colour;
+      }
+    }
   }
 }

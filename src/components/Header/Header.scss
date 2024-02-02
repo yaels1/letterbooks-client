@@ -2,15 +2,23 @@
 @use "../../styles/partials/mixins" as *;
 
 .header {
-  padding: 2rem;
+  // padding: 2rem;
+  @include block;
+  margin: 2rem;
+  margin-bottom: 0;
 
   &__title {
-    @include block;
+    // @include block;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
     font-size: 2rem;
+    border-bottom: 2px solid $secondary-colour;
+  }
+
+  &__title-text {
+    margin: 01rem;
   }
 
   &__logo {
@@ -22,7 +30,6 @@
 .nav {
   display: flex;
   justify-content: space-between;
-  margin-block: 1rem;
 
   &__header {
     @include block;

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import happyBook from "../../assets/images/coffee-book.jpg";
 import happyFace from "../../assets/logo/happy-face.png";
+import bookLogo from "../../assets/logo/books-stack-of-three (1).png";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -82,6 +83,18 @@ function Profile() {
           <button className="Profile__logout" onClick={handleLogout}>
             Log out
           </button>
+        </div>
+        <div className="Profile__info-text Profile__info-middle">
+          <img src={bookLogo} className="Profile__info-logo" />
+          <p>
+            click on the all books button to go through all the books on this
+            site.
+          </p>
+          <p>
+            add them to your read books list to have a record of all your read
+            books!
+          </p>
+          <img src={bookLogo} className="Profile__info-logo" />
         </div>
         <div className="Profile__info-img-container">
           <p>your favourite book is</p>

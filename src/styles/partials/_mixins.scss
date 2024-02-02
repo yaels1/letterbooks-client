@@ -13,8 +13,13 @@
 
 @mixin link {
   text-decoration: none;
+  background-color: #8f00ff40;
   font-weight: 500;
   &:hover {
     background-color: $accent-colour;
+  }
+  &.active {
+    background-color: $tertiary-colour;
+    border-bottom: 4px solid black;
   }
 }

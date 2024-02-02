@@ -1,8 +1,10 @@
 import "./QuestionnaireForm.scss";
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
+import happyFace from "../../assets/logo/smile.png";
+
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
@@ -126,20 +128,33 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
   return (
     <main>
       <div className="intro">
-        <h1>wow what a crazy questionnaireForm</h1>
-        <p>wow what a good mini explanation</p>
-        <p>
-          pick fiction or non fiction, then choose theme, length is optional
-        </p>
+        <h1 className="intro__header">
+          <img src={happyFace} className="intro__header-logo" />
+          Here we go!
+        </h1>
+        <div className="intro__text">
+          <p>
+            Here is a mini questionnaire to help figure out the best book for
+            you.
+          </p>
+          <p>
+            Make your way through the questions, they fill filter out as you
+            answer them,
+          </p>
+          <p>
+            so don't worry if there are no options for the later questions if
+            you havent answered he previous one
+          </p>
+        </div>
       </div>
 
       <form className="form" onSubmit={submitHandler}>
         {/* question 1 */}
         <div className="form__container">
-          <p className="form__question">question 1</p>
+          <p className="form__question">Question 1</p>
 
           <label htmlFor="question" className="form__question-label">
-            fiction
+            Fiction
             <input
               type="radio"
               name="question1"
@@ -149,7 +164,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
             />
           </label>
           <label htmlFor="question" className="form__question-label">
-            non-fiction
+            Non-fiction
             <input
               type="radio"
               name="question1"
@@ -162,7 +177,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
         {/* question 2 */}
         <div className="form__container">
-          <p className="form__question">question 2</p>
+          <p className="form__question">Question 2</p>
           <label htmlFor="question" className="form__question-label">
             {" "}
             Please select{" "}
@@ -186,7 +201,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
         {/* question 3 */}
         <div className="form__container">
-          <p className="form__question">question 3</p>
+          <p className="form__question">Question 3</p>
           <label htmlFor="question" className="form__question-label">
             {" "}
             Please select{" "}
@@ -209,9 +224,9 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
         <div className="form__container form__button">
           <button className="form__button-submit">GET RECOMMENDATION!</button>
 
-          <Link to="/" className="form__button-cancel">
-            <p>Cancel</p>
-          </Link>
+          <NavLink to="/" className="form__button-cancel">
+            <p className="form__button-cancel-text">Cancel</p>
+          </NavLink>
         </div>
       </form>
     </main>
