@@ -1,25 +1,25 @@
 @use "../../styles//partials/variables" as *;
 @use "../../styles/partials/fonts" as *;
-
+@use "../../styles/partials/mixins" as *;
 .list {
-  &__container {
-    background-color: $primary-colour;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  &__container {
     display: flex;
     justify-content: center;
     align-items: center;
+    // width: 70%;
   }
 
   &__title {
-    text-decoration: none;
-  }
-
-  &__title {
+    @include link;
     background-color: $primary-colour;
-    text-decoration: none;
-    color: black;
-    padding: 0.5rem 1rem;
-
+    color: $primary-text-colour;
+    margin-block-end: 1rem;
+    // padding: 1rem 1.5rem;
     font-weight: 500;
+    font-size: 2.5rem;
   }
 }

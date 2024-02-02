@@ -1,18 +1,25 @@
 import "./Homepage.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import cosyPhoto from "../../assets/images/cosy-photo.jpg";
 
 const HomePage = () => {
   return (
     <main>
       <div className="homepage">
-        <h1 className="homepage__title">this is the homepage, welcome</h1>
+        <h1 className="homepage__title">Welcome to the homepage!</h1>
         <div className="homepage__intro">
           <div className="homepage__text">
-            <p>this is some info about this app</p>
-            <p>lorem ipsum blahblahblah</p>
-            <p>we love a good book recommendation wow</p>
-            <p>there such an easy questionnaire to take</p>
+            <p>This is an book app</p>
+            <p>
+              There is a quick easy questionnaire to take, to figure out which
+              book will be your next adventure.
+            </p>
+            <p>
+              There are around 50 books in here so far, which you can find in
+              the lists section
+            </p>
+
+            <p>WISHLIST TO COME</p>
           </div>
           <img
             src={cosyPhoto}
@@ -21,16 +28,16 @@ const HomePage = () => {
           />
         </div>
         <div className="homepage__nav">
-          <Link to="/profile" className="homepage__nav-link">
-            <p>profile</p>
-          </Link>
-          <Link to="/questionnaire" className="homepage__nav-link">
-            <p>questionnaire</p>
-          </Link>
+          <NavLink to="/profile" className="homepage__nav-link">
+            <p className="homepage__nav-header">PROFILE</p>
+          </NavLink>
+          <NavLink to="/questionnaire" className="homepage__nav-link">
+            <p className="homepage__nav-header">QUESTIONNAIRE</p>
+          </NavLink>
 
-          <Link to="/login" className="homepage__nav-link">
-            <p>login</p>
-          </Link>
+          <NavLink to="/login" className="homepage__nav-link">
+            <p className="homepage__nav-header">LOGIN</p>
+          </NavLink>
         </div>
       </div>
     </main>

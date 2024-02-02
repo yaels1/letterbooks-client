@@ -1,7 +1,6 @@
 @use "./variables" as *;
 
 @mixin block {
-  background-color: $primary-colour;
   border-radius: 4px;
   padding: 1rem;
   margin-block: 1rem;
@@ -13,13 +12,14 @@
 
 @mixin link {
   text-decoration: none;
-  background-color: #8f00ff40;
+  background-color: #8f00ff80;
   font-weight: 500;
   &:hover {
-    background-color: $accent-colour;
+    background-color: $select-colour;
+    border-bottom: 4px solid black;
   }
   &.active {
-    background-color: $tertiary-colour;
+    background-color: $select-colour;
     border-bottom: 4px solid black;
   }
 }

@@ -2,27 +2,27 @@
 // book recs list
 // all books list?
 import "./Lists.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Lists = () => {
   return (
     <main className="list">
       <h1>Lists</h1>
       <div className="list__container">
-        <Link to="/list/book">
-          <p className="list__title">List of all books</p>
-        </Link>
+        <NavLink to="/list/book" className="list__title">
+          <p>List of all books</p>
+        </NavLink>
       </div>
       <div className="list__container">
-        <Link to="/list/read">
-          <p className="list__title">List of books you've read</p>
-        </Link>
+        <NavLink to="/list/read" className="list__title">
+          <p>List of books you've read</p>
+        </NavLink>
       </div>
 
       <div className="list__container">
-        <Link to="/list/recommendations">
-          <p className="list__title">List of book recommendations</p>
-        </Link>
+        <NavLink to="/list/recommendations" className="list__title">
+          <p c>List of book recommendations</p>
+        </NavLink>
       </div>
     </main>
   );

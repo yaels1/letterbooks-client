@@ -2,13 +2,15 @@
 @use "../../styles/partials/mixins" as *;
 
 .homepage {
-  @include block;
+  // @include block;
+  margin: auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
   &__title {
-    @include block;
+    // @include block;
   }
 
   &__intro {
@@ -17,11 +19,13 @@
     align-items: center;
   }
   &__text {
-    @include block;
+    // @include block;
+    width: 60%;
   }
   &__img {
     background-color: $primary-colour;
-    width: 60%;
+    width: 50%;
+    margin-block: 2rem;
   }
   &__nav {
     @include block;
@@ -29,16 +33,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    justify-content: center;
     padding: 0;
     width: 60%;
     border: 0;
+    margin: 0;
 
     &-link {
+      @include block;
       @include link;
-      padding: 1rem;
-      border: 2px solid $secondary-colour;
-      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-inline: 1rem;
+      // margin: 0;
+      padding: 0;
       flex: 1;
+    }
+
+    &-header {
+      &.active {
+        border-bottom: 4px solid black;
+      }
     }
   }
 }

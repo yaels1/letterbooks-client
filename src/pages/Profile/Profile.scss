@@ -16,6 +16,7 @@
 
     &-text {
       @include block;
+      width: 30%;
     }
 
     &-middle {
@@ -47,13 +48,13 @@
   &__nav {
     display: flex;
     justify-content: space-between;
-    padding-block: 1rem;
-    margin-block: 1.5rem;
+
     @include block;
 
     &-link {
       @include block;
       @include link;
+      margin-inline: 1rem;
     }
   }
 }

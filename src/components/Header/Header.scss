@@ -2,13 +2,11 @@
 @use "../../styles/partials/mixins" as *;
 
 .header {
-  // padding: 2rem;
-  @include block;
+  // @include block;
   margin: 2rem;
   margin-bottom: 0;
 
   &__title {
-    // @include block;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,6 +28,9 @@
 .nav {
   display: flex;
   justify-content: space-between;
+  // align-items: center;
+  width: 70%;
+  margin: auto;
 
   &__header {
     @include block;
