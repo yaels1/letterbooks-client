@@ -1,20 +1,21 @@
 @use "../../styles//partials/variables" as *;
 @use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
 
 .submitted {
-  //   background-color: $secondary-colour;
   padding: 1rem;
   display: flex;
   justify-content: center;
   &__link {
+    @include link;
+    background-color: $primary-colour;
+    margin: 4rem;
+
     &-text {
-      background-color: $primary-colour;
       width: fit-content;
-      text-decoration: none;
-      color: black;
-      padding: 0.5rem 1rem;
-      border: 1px solid black;
+      padding-inline: 1rem;
       font-weight: 500;
+      font-size: 2rem;
     }
   }
 }
