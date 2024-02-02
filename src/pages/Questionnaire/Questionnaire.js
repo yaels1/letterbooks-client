@@ -19,7 +19,9 @@ function Questionnaire({}) {
       )}
       {submitted && (
         <Link to="/list/recommendations" className="submitted__link">
-          <p className="submitted__link-text">Get your recommendations here</p>
+          <p className="submitted__link-text">
+            Click here to get your recommendations!
+          </p>
         </Link>
       )}
     </div>

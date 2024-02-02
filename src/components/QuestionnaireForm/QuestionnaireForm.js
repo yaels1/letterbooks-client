@@ -226,7 +226,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
         {/* button */}
         <div className="form__container form__button">
           <button className="form__button-submit">
-            CLICK HERE TO GET YOUR RECOMMENDATIONS!
+            CLICK HERE TO GENERATE YOUR RECOMMENDATIONS!
           </button>
 
           <NavLink to="/" className="form__button-cancel">
