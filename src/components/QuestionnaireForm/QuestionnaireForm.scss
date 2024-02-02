@@ -48,9 +48,17 @@ main {
     font-weight: 500;
   }
 
+  &__question-option {
+    @include select;
+  }
+
   &__button {
     &-submit {
+      @include select;
       margin-block: 1rem;
+      padding-block: 0.5rem;
+      font-weight: 700;
+      font-size: 1.5rem;
     }
 
     &-cancel {

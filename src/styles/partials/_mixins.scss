@@ -23,3 +23,13 @@
     border-bottom: 4px solid black;
   }
 }
+
+@mixin select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: $select-colour;
+  border: 2px solid $secondary-colour;
+  color: $primary-text-colour;
+  padding: 0.5rem 1rem;
+}

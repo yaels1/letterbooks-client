@@ -145,6 +145,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
             so don't worry if there are no options for the later questions if
             you havent answered he previous one
           </p>
+          <p>to do: randomizer and maybe max of 5 book recs for each request</p>
         </div>
       </div>
 
@@ -184,10 +185,10 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
           </label>
           <select
             name="question2"
-            className="form__question-theme"
+            className="form__question-option"
             onChange={handleAnswer}
           >
-            <option>select theme</option>
+            <option className="form__question-option">Select Theme ↓ </option>
             {menuTheme?.length > 0 &&
               menuTheme.map((themeName) => {
                 return (
@@ -209,10 +210,12 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
           <select
             name="question3"
-            className="form__question-length"
+            className="form__question-option"
             onChange={handleAnswer}
           >
-            <option value="0">select length</option>
+            <option value="0" className="form__question-option">
+              select length ↓
+            </option>
             {bookLength.areSmallBooks && <option value="small">Small</option>}
             {bookLength.areMediumBooks && (
               <option value="medium">Medium</option>
@@ -222,7 +225,9 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
         </div>
         {/* button */}
         <div className="form__container form__button">
-          <button className="form__button-submit">GET RECOMMENDATION!</button>
+          <button className="form__button-submit">
+            CLICK HERE TO GET YOUR RECOMMENDATIONS!
+          </button>
 
           <NavLink to="/" className="form__button-cancel">
             <p className="form__button-cancel-text">Cancel</p>
