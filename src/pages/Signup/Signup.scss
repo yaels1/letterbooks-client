@@ -31,14 +31,7 @@
     }
   }
 
-  &__no {
-    @include link;
-    @include block;
-    width: fit-content;
-    padding: 0.5rem;
-
-    &-link {
-      color: $primary-text-colour;
-    }
+  &__error {
+    color: $cancel-colour;
   }
 }

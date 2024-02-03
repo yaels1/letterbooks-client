@@ -3,13 +3,14 @@ import Input from "../../components/Input/Input";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FormError from "../../components/FormError/FormError";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 function Signup() {
   const [error, setError] = useState("");
 
-  const [filledForm, setfilledForm] = useState({
+  const [formDetails, setFormDetails] = useState({
     first_name: "",
     last_name: "",
     phone: "",
@@ -20,15 +21,56 @@ function Signup() {
     password: "",
   });
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setfilledForm((prevFilledForm) => ({ ...prevFilledForm, [name]: value }));
+    setFormDetails({
+      ...formDetails,
+      [event.target.name]: event.target.value,
+    });
   };
+
+  const formValidation = () => {
+    const {
+      first_name,
+      last_name,
+      phone,
+      age,
+      address,
+      fav_book,
+      email,
+      password,
+    } = formDetails;
+    if (
+      !first_name ||
+      !last_name ||
+      !phone ||
+      !age ||
+      !address ||
+      !fav_book ||
+      !email ||
+      !password
+    )
+      return <FormError />;
+  };
+
+  const emailError = !formDetails.email.includes("@")
+    ? "please enter a valid email address"
+    : null;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setFormSubmitted(true);
+
+    const validationError = formValidation();
+    if (validationError) {
+      setError(validationError.props.children);
+      return;
+    }
+
     try {
       await axios.post(`${apiUrl}/letterbooks/users/register`, {
         email: event.target.email.value,
@@ -58,6 +100,7 @@ function Signup() {
           label="First name"
           onChange={handleChange}
         />
+
         <Input
           type="text"
           name="last_name"
@@ -79,6 +122,9 @@ function Signup() {
           onChange={handleChange}
         />
         <Input type="text" name="email" label="Email" onChange={handleChange} />
+        {formSubmitted && emailError && (
+          <p className="signup__error">{emailError}</p>
+        )}
         <Input
           type="password"
           name="password"
@@ -87,9 +133,14 @@ function Signup() {
         />
         <button type="submit" className="signup__button">
           Sign up
-          {!filledForm && <p>you must fill out all of the fields</p>}
+          {!formDetails && (
+            <div>
+              <p>you must fill out all of the fields</p>
+            </div>
+          )}
         </button>
-        {error && <div className="signup__message">{error.message}</div>}
+
+        {formSubmitted && formValidation()}
       </form>
 
       <p className="signup__no">
