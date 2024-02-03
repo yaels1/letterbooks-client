@@ -4,15 +4,32 @@
 .header {
   margin: 2rem;
   margin-bottom: 0;
-  border-bottom: 4px solid black;
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    border-bottom: 4px solid black;
+  }
 
   &__title {
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 1rem;
     border-bottom: 2px solid $secondary-colour;
+
+    @include tablet {
+      font-size: 2rem;
+      margin-inline: 0;
+      padding-inline: 0;
+      gap: 1rem;
+    }
+
+    @include desktop {
+      font-size: 3rem;
+    }
   }
 
   &__title-text {
@@ -20,21 +37,33 @@
   }
 
   &__logo {
-    height: 4rem;
-    margin-right: 2rem;
+    height: 3rem;
+
+    @include tablet {
+      height: 4rem;
+      margin-right: 2rem;
+    }
   }
 }
 
 .nav {
   display: flex;
-  justify-content: space-between;
-  width: 70%;
-  margin: auto;
+  justify-content: space-around;
+  margin: 0.5rem;
+
+  @include tablet {
+    margin-inline: 2em;
+  }
 
   &__header {
     @include block;
     @include link;
     padding: 0.5rem 1rem;
-    margin-block: 1rem;
+    font-size: 0.5rem;
+
+    @include tablet {
+      font-size: 1rem;
+      margin: 1rem 0.5rem;
+    }
   }
 }

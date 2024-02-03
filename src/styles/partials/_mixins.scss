@@ -1,5 +1,16 @@
 @use "./variables" as *;
 
+@mixin tablet {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
 @mixin block {
   border-radius: 4px;
   border: 2px solid $secondary-colour;
@@ -16,11 +27,17 @@
   border-radius: 4px;
   &:hover {
     background-color: $select-colour;
-    border-bottom: 4px solid black;
+    border-bottom: 2px solid black;
+    @include tablet {
+      border-bottom: 4px solid black;
+    }
   }
   &.active {
     background-color: $select-colour;
-    border-bottom: 4px solid black;
+    border-bottom: 2px solid black;
+    @include tablet {
+      border-bottom: 4px solid black;
+    }
   }
 }
 
