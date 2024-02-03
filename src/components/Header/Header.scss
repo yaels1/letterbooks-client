@@ -43,6 +43,10 @@
       height: 4rem;
       margin-right: 2rem;
     }
+
+    @include desktop {
+      height: 7rem;
+    }
   }
 }
 
@@ -52,18 +56,23 @@
   margin: 0.5rem;
 
   @include tablet {
-    margin-inline: 2em;
+    margin-inline: 2rem;
   }
 
   &__header {
     @include block;
     @include link;
     padding: 0.5rem 1rem;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
 
     @include tablet {
-      font-size: 1rem;
+      font-size: 1.3rem;
       margin: 1rem 0.5rem;
+      padding-inline: 2rem;
+    }
+
+    @include desktop {
+      font-size: 2rem;
     }
   }
 }
