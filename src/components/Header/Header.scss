@@ -10,6 +10,12 @@
 
   @include tablet {
     border-bottom: 4px solid black;
+    margin: $tablet-margin;
+  }
+
+  @include desktop {
+    max-width: $desktop-width;
+    margin: auto;
   }
 
   &__title {
@@ -33,7 +39,7 @@
   }
 
   &__title-text {
-    margin: 01rem;
+    margin: 1rem;
   }
 
   &__logo {

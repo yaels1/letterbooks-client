@@ -5,27 +5,74 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-inline: 0;
+
+  @include tablet {
+    margin: $tablet-margin;
+    padding: 0;
+  }
+
+  @include desktop {
+    max-width: $desktop-width;
+    margin: auto;
+  }
 
   &__title {
     @include block;
+
+    @include tablet {
+      font-size: 3rem;
+    }
+
+    @include desktop {
+      font-size: 4rem;
+      padding-top: 1rem;
+      margin-bottom: 0;
+    }
   }
 
   &__info {
     @include block;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5rem;
+      border-bottom: 3px solid black;
+    }
+    @include desktop {
+      padding-bottom: 2rem;
+      border-bottom: 4px solid black;
+    }
 
     &-text {
       @include block;
-      width: 30%;
+      padding-bottom: 1rem;
+      width: 80%;
+
+      @include tablet {
+        width: 30%;
+      }
+
+      @include desktop {
+        font-size: 2rem;
+      }
     }
 
     &-middle {
       margin-inline: 1rem;
+      border-block: 2px solid black;
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      @include tablet {
+        border: 0;
+      }
     }
 
     &-img-container {
@@ -36,30 +83,68 @@
       align-items: center;
     }
 
+    &-logo {
+      width: 15%;
+
+      @include tablet {
+        width: 30%;
+      }
+    }
+
     &-img {
       width: 80%;
       padding-top: 1rem;
-    }
 
-    &-logo {
-      width: 15%;
+      @include tablet {
+        width: 100%;
+      }
     }
   }
 
   &__logout {
     @include select;
+    font-size: 0.8rem;
+
+    @include tablet {
+      font-size: 1rem;
+    }
+
+    @include desktop {
+      font-size: 1.5rem;
+    }
   }
 
   &__nav {
     display: flex;
     justify-content: space-between;
     @include block;
+    width: 80%;
+
+    @include tablet {
+      padding-block: 2rem;
+    }
+
+    @include desktop {
+      border: 0;
+    }
 
     &-link {
       @include block;
       @include link;
       padding: 0.5rem;
-      margin-inline: 1rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+
+      @include tablet {
+        margin-inline: 1rem;
+        font-size: 1.3rem;
+      }
+
+      @include desktop {
+        font-size: 1.8rem;
+        padding-inline: 2rem;
+      }
     }
   }
 }

@@ -82,8 +82,6 @@ function Profile() {
           <p>
             Welcome back, {user.first_name} {user.last_name}
           </p>
-
-          <h2>My Profile</h2>
           <p>Email: {user.email}</p>
           <p>Phone: {user.phone}</p>
           <p>Address: {user.address}</p>
@@ -96,16 +94,16 @@ function Profile() {
         <div className="Profile__info-text Profile__info-middle">
           <img src={bookLogo} className="Profile__info-logo" />
           <p>
-            click on the all books button to go through all the books on this
+            Click on the all books button to go through all the books on this
             site.
           </p>
           <p>
-            add them to your read books list to have a record of all your read
-            books!
+            Add them to your read books list to have a record of your own
+            library!
           </p>
           <img src={bookLogo} className="Profile__info-logo" />
         </div>
-        <div className="Profile__info-img-container">
+        <div className="Profile__info-text Profile__info-img-container">
           <p>Your favourite book is:</p>
           <p> {user.fav_book}</p>
           <p>Here's another nice cosy photo just for fun</p>
