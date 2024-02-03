@@ -8,9 +8,9 @@ A new way to find book recommendations. With records of your personal book histo
 
 ### Problem
 
-For the ongoing struggle of not knowing what to read, of having just finished a book or a series and not knowing where to go next, or just of wanting to have a record of all the books you've read in one place. People in this position will usually go down the time-consuming process of going down Google search rabbit hole, having to ask way too many people for recommendations and then being bombarded with a bunch of suggestions that do not fit the criteria they are looking for.
+For the ongoing struggle of not knowing what to read, of having just finished a book or a series and not knowing where to go next, or just of wanting to have a record of all the books you've read in one place. People in this position will usually go down the time-consuming process of a Google search rabbit hole, asking too many people for too many recommendations, being bombarded with a bunch of suggestions that do not fit the criteria they are looking for.
 
-Whether there is a solid idea of what you're looking for or none at all, the user can input what they would want in the next read into this app, and it will generate the most appropriate option(s) for the next, taking into accounts the length of the book, the location of the user, the read themes and desired themes, fiction or non-fiction, online or offline, perhaps an audiobook and many more.
+Whether there is a solid idea of what you're looking for or none at all, the you can input what theme and size you would want in the next read into this app, and it will generate the most appropriate option(s) for you, taking into accounts the length of the book, desired themes, fiction or non-fiction and soon to be many more!
 
 ### User Profile
 
@@ -23,10 +23,13 @@ Avid book readers or people trying to get into reading who:
 
 - As a user, I want to be recommended what book I should read next, with a questionnaire.
 
-- As a user, I want to be able to create an account to manage my library of books.
+- As a user, I want to be able to see the list of all of the books that are in this application.
+
+- As a user, I want to be able to create an account to add my library of books to a list.
 - As a user, I want to be able to log in to my account to manage my library of books.
 
 - As a logged in user, I want to be able to make a list of the books I have read
+- As a logged in user, I want to have a list of book recommendations generated for me
 
 #### Nice to have
 
@@ -39,16 +42,23 @@ Avid book readers or people trying to get into reading who:
 
 ### Tech Stack
 
-- React
-- mySQL
-- Express
 - Client libraries:
+
   - react
   - react-router
   - axios
+  - sass
+  - jwt-decode
+
 - Server libraries:
-  - knex
+  - Express
+  - bycrypt
+  - cors
+  - dotenv
   - express
+  - jsonwebtoken
+  - knex
+  - mysql2
 
 ### APIs
 
@@ -57,16 +67,17 @@ no external APIs used
 ### Sitemap
 
 - Register page / Login page
+- Header: logo and name. nav bar with links to home page, profile page, lists page, questionnaire form
 - Home page: short explanation of app, menu with browse, read list,
-- Single book page: image, title, author, blurb/short summary of the story, add to list
-- Personal info page: name, drop down lists of read books and want to read books, link to questionnaire
-- List page: list of books added from read books list, results for recommendations
-- Questionnaire for next book recommendation: form of questions and drop down options
+- Single book page: image, title, author, blurb/short summary of the story, add to list of read books
+- Personal info page: name, email, phone, address, age, what kind of user, favourite book. link to home, all books, read books, questionnaire
+- List page: list of books added from read books list, results for recommendations, list of all books in application
+- Questionnaire for next book recommendation: form of questions and drop down options, link to recommendations list
 
 #### Nice to have
 
-- List page: want to read books
-- Home page: link to wish list
+- List page: wishlist
+- Home page, list page, profile page: link to wish list
 
 ### Mockups
 
@@ -74,33 +85,39 @@ Provide visuals of your app's screens. You can use tools like Figma or pictures 
 
 figma link / screenshots of figma page
 
-![](./mockups/header.png)
-![](./mockups/homepage.png)
-![](./mockups/list.png)
-![](./mockups/profile.png)
-![](./mockups/singlebook.png)
+![](../letterbooks-client/src/assets/mockups/header.png)
+![](../letterbooks-client/src/assets/mockups/homepage.png)
+![](../letterbooks-client/src/assets/mockups/list.png)
+![](../letterbooks-client/src/assets/mockups/profile.png)
+![](../letterbooks-client/src/assets/mockups/singlebook.png)
 
 ### Data
 
 Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
 
-hard code around 10 themes with 5 books each
+hard code 50 books with a variety of themes
 
 user table:
 
-- user
+- id
+- first name
+- last name
 - email
 - password
+- phone
+- age
+- address
+- favourite book
+- role
 
 book table:
 
 - book id
 - author id
-- theme id
 - title
-- img
 - number of pages
 - description
+- img
 
 author table:
 
@@ -109,8 +126,19 @@ author table:
 
 theme table:
 
+- id
+- fiction
+- theme name
+
+book_theme join table
+
+- book id
 - theme id
-- theme
+
+user_read_book join table
+
+- book id
+- user id
 
 #### Nice to have
 
@@ -120,49 +148,58 @@ link to api to get larger range of books and information about the books, e.g. r
 
 List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
 
-**GET /book**
+_BOOKS_
 
 - Get data for all books
-  **GET /book/:id**
+  **GET /book**
+
 - Get data for a single book
+  **GET /book/:id**
 
-**GET /list**
+_LIST_
 
-- Get all list
-  **GET /list/read**
 - Get list of read books
-  **POST /list/read**
+  **GET /list/:userID/read**
+
 - Add book to list of read books
+  **POST /list/read**
 
-**GET /list/recommendations**
+_QUESTIONNAIRE_
 
-- Get a list of book recommendations
+- get questions from questionnaire
+  **GET /questionnaire**
 
-**POST /questionnaire**
-
-- add information from questionnaire to find the book(s) that meet the most requirements
-
-**POST /users/register**
+_USERS_
 
 - Add a user account
-
-**POST /users/login**
+  **POST /users/register**
 
 - Login a user
+  **POST /users/login**
+
+- Get user profile information
+  **GET /users/profile**
 
 #### Nice to have
 
-**GET /list/wishlist**
+- remove book from the recommendations list
+  **delete /list/recommendations**
 
 - Get list of books already added onto wishlist
-  **POST /list/wishlist**
+  **GET /list/wishlist**
+
   -Add a book to the wish list
+  **POST /list/wishlist**
 
   delete books from list
+  **delete /list/wishlist**
 
 ### Auth
 
-Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
+- JWT auth
+  -added after core features have first been implemented
+  - stored JWT in localStorage, remove when a user logs out
+  - change UI for some pages for when the user is logged in or out
 
 ## Roadmap
 
@@ -195,17 +232,14 @@ Does your project include any login or user profile functionality? If so, descri
   - Implement login page + form
   - Create POST /users/login endpoint
 
-#### Nice to have
-
-- GET /list/wishlist
-  -POST /list/wishlist endpoints
-
-- add link to the list page for read or wishlist
-
 ## Nice-to-haves
 
-- top 5 books in profile page
-- wish list
+- Top 5 books in profile page
+- Wish list
 - link to buy, if online link to buy page, if offline link to location. price
 - Search Page: search, view, books
-- ratings function
+- Ratings function
+- Forgot password functionality
+- More books
+- Forgot password functionality
+- Ability to add books not in the system to wishlist / reaad books list

@@ -39,10 +39,3 @@ function App() {
 }
 
 export default App;
-
-//  /  /homepage  homepage
-//  /profile  profile
-//  /list   /list/read   /list/recommendations
-//  /book/:id
-//  /questionnaire
-//    /not found

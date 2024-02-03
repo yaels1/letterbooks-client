@@ -52,9 +52,8 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
     });
   }
 
-  //   filter through questions for themes
+  //   filter through q1 response for themes
   useEffect(() => {
-    // filter for theme
     const filteredBooksTheme = filterByFiction(listAllBooks);
     const themes = new Array(
       ...new Set(filteredBooksTheme.map((book) => book.themes).flat())
@@ -83,6 +82,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
     });
   }
 
+  // filter through q2 response for length
   useEffect(() => {
     if (!answer.question2) {
       return;
@@ -102,9 +102,10 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
     setBookLength({ areSmallBooks, areMediumBooks, areLargeBooks });
   }, [answer.question2]);
 
+  // check if all questions answered
   const isFormValid = () => {
-    if (!answer.question1 || !answer.question2) {
-      console.log("Please Answer the first 2 questions");
+    if (!answer.question1 || !answer.question2 || !answer.question3) {
+      console.log("Please answer all the questions");
       return false;
     } else {
       return true;
@@ -131,6 +132,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
   const [user, setUser] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
 
+  // if logged in or out
   useEffect(() => {
     const loadData = async () => {
       const token = localStorage.getItem("token");
@@ -279,6 +281,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
             {bookLength.areLargeBooks && <option value="large">Large</option>}
           </select>
         </div>
+
         {/* button */}
         <div className="form__container form__button">
           <button className="form__button-submit">

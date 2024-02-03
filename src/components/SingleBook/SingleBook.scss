@@ -2,41 +2,6 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
-// .book {
-//   padding: 2rem;
-//   @include block;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-
-//   &__cover {
-//     width: fit-content;
-//     height: 40vh;
-//     background-color: $primary-colour;
-//     padding: 1rem;
-//   }
-//   &__title {
-//     background-color: $primary-colour;
-//     padding: 1rem;
-//   }
-//   &__author {
-//     background-color: $primary-colour;
-//     padding: 1rem;
-//   }
-//   &__summary {
-//     background-color: $primary-colour;
-//     padding: 2rem 3rem;
-//     margin-inline: 4rem;
-//   }
-
-//   &__button {
-//     &-text {
-//       background-color: $primary-colour;
-//       padding: 1rem;
-//     }
-//   }
-// }
-
 .book {
   @include block;
   padding: 2rem;
@@ -47,15 +12,16 @@
   &__container {
     @include link;
     display: flex;
-
     align-items: flex-start;
     padding: 1rem;
   }
+
   &__image {
     padding: 2rem;
     width: 15rem;
     @include link;
   }
+
   &__container-text {
     display: flex;
     flex-direction: column;

@@ -3,7 +3,6 @@
 
 .homepage {
   margin: auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,17 +12,19 @@
     flex-direction: column;
     align-items: center;
   }
+
   &__text {
     width: 60%;
   }
+
   &__img {
     background-color: $primary-colour;
     width: 50%;
     margin-block: 2rem;
   }
+
   &__nav {
     @include block;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
