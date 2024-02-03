@@ -1,5 +1,5 @@
-import Input from "../../components/Input/Input";
 import "./Signup.scss";
+import Input from "../../components/Input/Input";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -32,8 +32,8 @@ function Signup() {
   };
 
   return (
-    <main className="signup-page">
-      <form className="signup" onSubmit={handleSubmit}>
+    <main className="signup">
+      <form className="signup__form" onSubmit={handleSubmit}>
         <h1 className="signup__title">Sign up</h1>
         <Input type="text" name="first_name" label="First name" />
         <Input type="text" name="last_name" label="Last name" />
@@ -44,13 +44,15 @@ function Signup() {
         <Input type="text" name="email" label="Email" />
         <Input type="password" name="password" label="Password" />
         <button className="signup__button">Sign up</button>
-        <p>{error}</p>
+        {error && <div className="signup__message">{error.message}</div>}
       </form>
-      <div className="signup__check">
-        <p>Have an account?</p>
 
-        <Link to="/login">Log in</Link>
-      </div>
+      <p className="signup__no">
+        Have an account?{" "}
+        <Link to="/login" className="signup__no-link">
+          Log in
+        </Link>
+      </p>
     </main>
   );
 }

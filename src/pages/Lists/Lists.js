@@ -4,9 +4,12 @@ import { NavLink } from "react-router-dom";
 const Lists = () => {
   return (
     <main className="lists">
+      {/* login */}
       <h1>Lists</h1>
       <div className="list">
+        {/* form */}
         <div className="list__container">
+          {/* field */}
           <NavLink to="/list/book" className="list__title">
             <p>List of all books</p>
           </NavLink>
