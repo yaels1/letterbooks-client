@@ -49,22 +49,43 @@ const SingleBook = () => {
     }
   };
 
+  const [loggedIn, setLoggedIn] = useState(() => {
+    const token = localStorage.getItem("token");
+    return token?.length > 0;
+  });
+
   if (!book) return <h1>Loading...</h1>;
   return (
     <main>
-      <div className="book">
-        <div className="book__container">
-          <img className="book__image" src={book.image} alt="" />
-          <div className="book__container-text">
-            <p className="book__text book__title">{book.title}</p>
-            <p className="book__text book__author">{book.name}</p>
-            <p className="book__text book__summary">{book.summary}</p>
+      {!loggedIn && (
+        <div className="book">
+          <div className="book__container">
+            <img className="book__image" src={book.image} alt="" />
+            <div className="book__container-text">
+              <p className="book__text book__title">{book.title}</p>
+              <p className="book__text book__author">{book.name}</p>
+              <p className="book__text book__summary">{book.summary}</p>
+            </div>
           </div>
         </div>
-        <button onClick={addBook} className="book__button">
-          <p className="book__button-text">ADD BOOK TO LIST OF READ BOOKS</p>
-        </button>
-      </div>
+      )}
+
+      {loggedIn && (
+        <div className="book">
+          <div className="book__container">
+            <img className="book__image" src={book.image} alt="" />
+            <div className="book__container-text">
+              <p className="book__text book__title">{book.title}</p>
+              <p className="book__text book__author">{book.name}</p>
+              <p className="book__text book__summary">{book.summary}</p>
+            </div>
+          </div>
+
+          <button onClick={addBook} className="book__button">
+            <p className="book__button-text">ADD BOOK TO LIST OF READ BOOKS</p>
+          </button>
+        </div>
+      )}
     </main>
   );
 };

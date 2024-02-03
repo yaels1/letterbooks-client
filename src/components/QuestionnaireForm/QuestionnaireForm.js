@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import happyFace from "../../assets/logo/smile.png";
+import sadFace from "../../assets/logo/sad-face.png";
+import arrowRight from "../../assets/logo/arrow-right.png";
+import arrowLeft from "../../assets/logo/arrow-left.png";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -124,6 +127,59 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
       console.log("pls answer all necessary questions");
     }
   };
+
+  const [user, setUser] = useState(null);
+  const [failedAuth, setFailedAuth] = useState(false);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        return setFailedAuth(true);
+      }
+
+      try {
+        const { data } = await axios.get(
+          `${apiUrl}/letterbooks/users/profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(data);
+        setUser(data);
+      } catch (error) {
+        console.log(error);
+        setFailedAuth(true);
+      }
+    };
+    loadData();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+    setFailedAuth(true);
+  };
+
+  if (failedAuth) {
+    return (
+      <main className="Profile__no">
+        <p>You must be logged in to see this page.</p>
+        <img src={sadFace} className="Profile__no-logo" />
+
+        <div className="Profile__no-login">
+          <img src={arrowRight} className="Profile__no-arrow" />
+          <NavLink to="/login" className="Profile__no-link">
+            Log in
+          </NavLink>
+          <img src={arrowLeft} className="Profile__no-arrow" />
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main>
