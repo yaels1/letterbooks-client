@@ -150,7 +150,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
             },
           }
         );
-        console.log(data);
+
         setUser(data);
       } catch (error) {
         console.log(error);
@@ -159,12 +159,6 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
     };
     loadData();
   }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-    setFailedAuth(true);
-  };
 
   if (failedAuth) {
     return (
@@ -237,10 +231,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
         {/* question 2 */}
         <div className="form__container">
           <p className="form__question">Question 2</p>
-          <label htmlFor="question" className="form__question-label">
-            {" "}
-            Please select{" "}
-          </label>
+          <label htmlFor="question"> Please select </label>
           <select
             name="question2"
             className="form__question-option"
@@ -261,10 +252,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
         {/* question 3 */}
         <div className="form__container">
           <p className="form__question">Question 3</p>
-          <label htmlFor="question" className="form__question-label">
-            {" "}
-            Please select{" "}
-          </label>
+          <label htmlFor="question"> Please select </label>
 
           <select
             name="question3"
@@ -283,7 +271,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
         </div>
 
         {/* button */}
-        <div className="form__container form__button">
+        <div className=" form__button">
           <button className="form__button-submit">
             CLICK HERE TO GENERATE YOUR RECOMMENDATIONS!
           </button>
