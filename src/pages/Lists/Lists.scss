@@ -6,12 +6,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include tablet {
+    padding: 0;
+  }
+
+  &__header {
+    font-size: 2rem;
+
+    @include tablet {
+      font-size: 3rem;
+    }
+
+    @include desktop {
+      font-size: 4rem;
+    }
+  }
 }
 
 .list {
+  padding-inline: 1rem;
+
   &__container {
     display: flex;
     align-items: center;
+    margin-inline: 1rem;
   }
 
   &__title {
@@ -19,12 +38,20 @@
     background-color: $primary-colour;
     margin-block: 1rem;
     padding-inline: 2rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     width: 100%;
     text-align: center;
 
     &:hover {
       border-bottom: 8px solid black;
+    }
+
+    @include tablet {
+      font-size: 2.3rem;
+    }
+
+    @include desktop {
+      font-size: 3rem;
     }
   }
 }

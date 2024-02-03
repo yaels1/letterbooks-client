@@ -10,7 +10,7 @@ const Lists = () => {
 
   return (
     <main className="lists">
-      <h1>Lists</h1>
+      <h1 className="lists__header">Lists</h1>
       <div className="list">
         {!loggedIn && (
           <div className="list__container">
