@@ -1,0 +1,24 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+.empty-list {
+  &__text {
+    @include block;
+  }
+
+  &__img {
+    width: 5%;
+  }
+
+  &__link-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &__link {
+    @include link;
+    padding-inline: 1rem;
+  }
+}

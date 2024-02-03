@@ -21,7 +21,7 @@ function Login() {
 
       localStorage.setItem("token", response.data.token);
 
-      navigate("/profile");
+      navigate("/homepage");
     } catch (error) {
       setError(error.response.data);
     }

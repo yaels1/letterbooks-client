@@ -1,8 +1,19 @@
 import "./Homepage.scss";
 import { NavLink } from "react-router-dom";
 import cosyPhoto from "../../assets/images/cosy-photo.jpg";
+import { useState } from "react";
 
 const HomePage = () => {
+  const [loggedIn, setLoggedIn] = useState(() => {
+    const token = localStorage.getItem("token");
+    return token?.length > 0;
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+  };
+
   return (
     <main>
       <div className="homepage">
@@ -28,16 +39,30 @@ const HomePage = () => {
           />
         </div>
         <div className="homepage__nav">
-          <NavLink to="/profile" className="homepage__nav-link">
-            <p className="homepage__nav-header">PROFILE</p>
-          </NavLink>
-          <NavLink to="/questionnaire" className="homepage__nav-link">
-            <p className="homepage__nav-header">QUESTIONNAIRE</p>
-          </NavLink>
+          {loggedIn && (
+            <>
+              <NavLink to="/profile" className="homepage__nav-link">
+                <p className="homepage__nav-header">PROFILE</p>
+              </NavLink>
+              <NavLink to="/questionnaire" className="homepage__nav-link">
+                <p className="homepage__nav-header">QUESTIONNAIRE</p>
+              </NavLink>
 
-          <NavLink to="/login" className="homepage__nav-link">
-            <p className="homepage__nav-header">LOGIN</p>
-          </NavLink>
+              <button
+                className="homepage__nav-link homepage__nav-logout"
+                onClick={handleLogout}
+              >
+                <p className="homepage__nav-header"> LOGOUT</p>
+              </button>
+            </>
+          )}
+
+          {!loggedIn && (
+            <NavLink to="/login" className="homepage__nav-link">
+              <p className="homepage__nav-header">LOGIN</p>
+            </NavLink>
+          )}
+          {}
         </div>
       </div>
     </main>

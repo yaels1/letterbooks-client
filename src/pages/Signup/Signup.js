@@ -8,7 +8,7 @@ import FormError from "../../components/FormError/FormError";
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 function Signup() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
 
   const [formDetails, setFormDetails] = useState({
     first_name: "",
@@ -33,60 +33,45 @@ function Signup() {
   };
 
   const formValidation = () => {
-    const {
-      first_name,
-      last_name,
-      phone,
-      age,
-      address,
-      fav_book,
-      email,
-      password,
-    } = formDetails;
-    if (
-      !first_name ||
-      !last_name ||
-      !phone ||
-      !age ||
-      !address ||
-      !fav_book ||
-      !email ||
-      !password
-    )
-      return <FormError />;
-  };
+    const formErrors = {};
+    if (!formDetails["email"].includes("@")) {
+      formErrors["email"] = true;
+    }
 
-  const emailError = !formDetails.email.includes("@")
-    ? "please enter a valid email address"
-    : null;
+    Object.keys(formDetails).forEach((field) => {
+      const isError = formDetails[field].trim().length == 0;
+      if (isError) {
+        formErrors[field] = true;
+      }
+    });
+
+    return formErrors;
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setFormSubmitted(true);
-
     const validationError = formValidation();
-    if (validationError) {
-      setError(validationError.props.children);
-      return;
-    }
+    console.log(validationError);
+    setError(validationError);
 
     try {
-      await axios.post(`${apiUrl}/letterbooks/users/register`, {
-        email: event.target.email.value,
-        password: event.target.password.value,
-        first_name: event.target.first_name.value,
-        last_name: event.target.last_name.value,
-        age: event.target.age.value,
-        phone: event.target.phone.value,
-        fav_book: event.target.fav_book.value,
-        address: event.target.address.value,
-      });
-
-      navigate("/login");
+      if (!Object.values(validationError).some((a) => a)) {
+        await axios.post(`${apiUrl}/letterbooks/users/register`, {
+          email: event.target.email.value,
+          password: event.target.password.value,
+          first_name: event.target.first_name.value,
+          last_name: event.target.last_name.value,
+          age: event.target.age.value,
+          phone: event.target.phone.value,
+          fav_book: event.target.fav_book.value,
+          address: event.target.address.value,
+        });
+        setFormSubmitted(true);
+        navigate("/login");
+      }
     } catch (error) {
-      console.log(error.response.data);
-      setError(error.response.data);
+      console.log(error);
     }
   };
 
@@ -98,6 +83,7 @@ function Signup() {
           type="text"
           name="first_name"
           label="First name"
+          value={formDetails.first_name}
           onChange={handleChange}
         />
 
@@ -122,9 +108,7 @@ function Signup() {
           onChange={handleChange}
         />
         <Input type="text" name="email" label="Email" onChange={handleChange} />
-        {formSubmitted && emailError && (
-          <p className="signup__error">{emailError}</p>
-        )}
+
         <Input
           type="password"
           name="password"
@@ -140,7 +124,9 @@ function Signup() {
           )}
         </button>
 
-        {formSubmitted && formValidation()}
+        {Object.values(error).some((error) => error) && (
+          <FormError error={error} />
+        )}
       </form>
 
       <p className="signup__no">

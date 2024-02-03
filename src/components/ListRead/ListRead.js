@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
+import EmptyList from "../EmptyList/EmptyList";
+
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 const ListRead = () => {
@@ -33,16 +35,26 @@ const ListRead = () => {
 
   return (
     <div className="read">
-      {readBooks.map((book) => (
-        <Link to={`/book/${book.id}`} key={book.id} className="read__container">
-          <img src={book.image} className="read__image" alt="" />
-          <div>
-            <p className="read__text read__title">Title: {book.title}</p>
-            <p className="read__text read__author">Author: {book.name}</p>
-            <p className="read__text read__pages">No. of Pages: {book.pages}</p>
-          </div>
-        </Link>
-      ))}
+      {readBooks.length < 1 ? (
+        <EmptyList />
+      ) : (
+        readBooks.map((book) => (
+          <Link
+            to={`/book/${book.id}`}
+            key={book.id}
+            className="read__container"
+          >
+            <img src={book.image} className="read__image" alt="" />
+            <div>
+              <p className="read__text read__title">Title: {book.title}</p>
+              <p className="read__text read__author">Author: {book.name}</p>
+              <p className="read__text read__pages">
+                No. of Pages: {book.pages}
+              </p>
+            </div>
+          </Link>
+        ))
+      )}
     </div>
   );
 };
