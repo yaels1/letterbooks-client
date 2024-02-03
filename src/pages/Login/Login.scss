@@ -19,6 +19,10 @@
     margin: 0.5rem;
   }
 
+  &__error {
+    color: $cancel-colour;
+  }
+
   &__no {
     @include link;
     @include block;

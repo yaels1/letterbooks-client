@@ -33,7 +33,9 @@ function Login() {
         <Input type="text" name="email" label="Email" />
         <Input type="password" name="password" label="Password" />
         <button className="login__field login__button">Log in</button>
-        {error && <div className="login__message">{error.message}</div>}
+        {error && (
+          <div className="login__error">{error.message}, please try again</div>
+        )}
       </form>
       <p className=" login__no">
         Need an account?{" "}
