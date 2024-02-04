@@ -51,7 +51,9 @@ function Profile() {
   if (failedAuth) {
     return (
       <main className="Profile__no">
-        <p>You must be logged in to see this page.</p>
+        <p className="Profile__no-text">
+          You must be logged in to see this page.
+        </p>
         <img src={sadFace} className="Profile__no-logo" />
 
         <div className="Profile__no-login">

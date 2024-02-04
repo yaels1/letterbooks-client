@@ -162,16 +162,18 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
   if (failedAuth) {
     return (
-      <main className="Profile__no">
-        <p>You must be logged in to see this page.</p>
-        <img src={sadFace} className="Profile__no-logo" />
+      <main className="questionnaire__no">
+        <p className="questionnaire__no-text">
+          You must be logged in to see this page.
+        </p>
+        <img src={sadFace} className="questionnaire__no-logo" />
 
-        <div className="Profile__no-login">
-          <img src={arrowRight} className="Profile__no-arrow" />
-          <NavLink to="/login" className="Profile__no-link">
+        <div className="questionnaire__no-login">
+          <img src={arrowRight} className="questionnaire__no-arrow" />
+          <NavLink to="/login" className="questionnaire__no-link">
             Log in
           </NavLink>
-          <img src={arrowLeft} className="Profile__no-arrow" />
+          <img src={arrowLeft} className="questionnaire__no-arrow" />
         </div>
       </main>
     );
