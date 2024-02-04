@@ -202,9 +202,8 @@ function Signup() {
       </form>
 
       <p className="signup__no">
-        Already have an account?{" "}
         <NavLink to="/login" className="signup__no-link">
-          Log in
+          Already have an account? Log in
         </NavLink>
       </p>
     </main>

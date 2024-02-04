@@ -39,6 +39,7 @@
     padding: 2rem;
     width: 15rem;
     @include link;
+    pointer-events: none;
 
     @include desktop {
       width: 50%;

@@ -77,12 +77,17 @@ const SingleBook = () => {
       {!loggedIn && (
         <div className="book">
           <div className="book__container">
-            <img className="book__image" src={book.image} alt="" />
-            <div className="book__container-text">
-              <p className="book__text book__title">{book.title}</p>
-              <p className="book__text book__author">{book.name}</p>
-              <p className="book__text book__summary">{book.summary}</p>
+            <div className="book__container-column">
+              <img className="book__image" src={book.image} alt="" />
+              <div className="book__container-text">
+                <p className="book__text book__title">{book.title}</p>
+                <p className="book__text book__author">{book.name}</p>
+                <p className="book__text book__summary book__summary--desktop">
+                  {book.summary}
+                </p>
+              </div>
             </div>
+            <p className=" book__summary">{book.summary}</p>
           </div>
         </div>
       )}

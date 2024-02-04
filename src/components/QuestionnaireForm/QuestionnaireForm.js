@@ -199,7 +199,6 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
             so don't worry if there are no options for the later questions if
             you havent answered he previous one
           </p>
-          <p>to do: randomizer and maybe max of 5 book recs for each request</p>
         </div>
       </div>
 

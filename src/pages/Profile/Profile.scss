@@ -55,7 +55,7 @@
       width: 80%;
 
       @include tablet {
-        width: 30%;
+        flex: 1;
       }
 
       @include desktop {

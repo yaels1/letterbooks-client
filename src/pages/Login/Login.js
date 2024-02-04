@@ -1,6 +1,6 @@
 import "./Login.scss";
 import Input from "../../components/Input/Input";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
@@ -38,10 +38,9 @@ function Login() {
         )}
       </form>
       <p className=" login__no">
-        Need an account?{" "}
-        <Link to="/signup" className=" login__no-link">
-          Sign up
-        </Link>
+        <NavLink to="/signup" className=" login__no-link">
+          Need an account? Sign up
+        </NavLink>
       </p>
     </main>
   );
