@@ -202,80 +202,103 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
       </div>
 
       <form className="form" onSubmit={submitHandler}>
-        {/* question 1 */}
-        <div className="form__container">
-          <p className="form__question">Question 1</p>
+        <div className="form__nobutton">
+          {/* question 1 */}
+          <div className="form__container">
+            <p className="form__question">Question 1</p>
 
-          <label htmlFor="question" className="form__question-label">
-            Fiction
-            <input
-              type="radio"
-              name="question1"
-              value="fiction"
-              className="form__question-input"
+            <label htmlFor="question" className="form__question-label">
+              Fiction
+              <input
+                type="radio"
+                name="question1"
+                value="fiction"
+                className="form__question-input"
+                onChange={handleAnswer}
+              />
+            </label>
+            <label htmlFor="question" className="form__question-label">
+              Non-fiction
+              <input
+                type="radio"
+                name="question1"
+                value="non-fiction"
+                className="form__question-input"
+                onChange={handleAnswer}
+              />
+            </label>
+          </div>
+
+          {/* question 2 */}
+          <div className="form__container">
+            <p className="form__question">Question 2</p>
+            <label htmlFor="question" className="form__label">
+              {" "}
+              Please select{" "}
+            </label>
+            <select
+              name="question2"
+              className="form__question-option"
               onChange={handleAnswer}
-            />
-          </label>
-          <label htmlFor="question" className="form__question-label">
-            Non-fiction
-            <input
-              type="radio"
-              name="question1"
-              value="non-fiction"
-              className="form__question-input"
+            >
+              <option className="form__question-option-menu">
+                Select Theme ↓{" "}
+              </option>
+              {menuTheme?.length > 0 &&
+                menuTheme.map((themeName) => {
+                  return (
+                    <option
+                      key={themeName}
+                      value={themeName}
+                      className="form__question-option-menu"
+                    >
+                      {themeName}
+                    </option>
+                  );
+                })}
+            </select>
+          </div>
+
+          {/* question 3 */}
+          <div className="form__container">
+            <p className="form__question">Question 3</p>
+            <label htmlFor="question" className="form__label">
+              {" "}
+              Please select{" "}
+            </label>
+
+            <select
+              name="question3"
+              className="form__question-option"
               onChange={handleAnswer}
-            />
-          </label>
+            >
+              <option value="0" className="form__question-option-menu">
+                Select length ↓
+              </option>
+              {bookLength.areSmallBooks && (
+                <option value="small" className="form__question-option-menu">
+                  Small
+                </option>
+              )}
+              {bookLength.areMediumBooks && (
+                <option value="medium" className="form__question-option-menu">
+                  Medium
+                </option>
+              )}
+              {bookLength.areLargeBooks && (
+                <option value="large" className="form__question-option-menu">
+                  Large
+                </option>
+              )}
+            </select>
+          </div>
         </div>
-
-        {/* question 2 */}
-        <div className="form__container">
-          <p className="form__question">Question 2</p>
-          <label htmlFor="question"> Please select </label>
-          <select
-            name="question2"
-            className="form__question-option"
-            onChange={handleAnswer}
-          >
-            <option className="form__question-option">Select Theme ↓ </option>
-            {menuTheme?.length > 0 &&
-              menuTheme.map((themeName) => {
-                return (
-                  <option key={themeName} value={themeName}>
-                    {themeName}
-                  </option>
-                );
-              })}
-          </select>
-        </div>
-
-        {/* question 3 */}
-        <div className="form__container">
-          <p className="form__question">Question 3</p>
-          <label htmlFor="question"> Please select </label>
-
-          <select
-            name="question3"
-            className="form__question-option"
-            onChange={handleAnswer}
-          >
-            <option value="0" className="form__question-option">
-              select length ↓
-            </option>
-            {bookLength.areSmallBooks && <option value="small">Small</option>}
-            {bookLength.areMediumBooks && (
-              <option value="medium">Medium</option>
-            )}
-            {bookLength.areLargeBooks && <option value="large">Large</option>}
-          </select>
-        </div>
-
         {/* button */}
         <div className=" form__button">
           <button className="form__button-submit">CLICK HERE!</button>
 
           <NavLink to="/" className="form__button-cancel">
-            <p className="form__button-cancel-text">Cancel</p>
+            <p className="form__button-cancel-text">CANCEL</p>
           </NavLink>
         </div>
       </form>

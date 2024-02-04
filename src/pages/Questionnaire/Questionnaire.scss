@@ -7,16 +7,29 @@
   display: flex;
   justify-content: center;
 
+  @include tablet {
+    margin: $tablet-margin;
+    padding: 0;
+  }
+
   &__link {
     @include link;
     background-color: $primary-colour;
-    margin: 4rem;
+    margin: 1rem 4rem;
 
     &-text {
       width: fit-content;
       padding-inline: 1rem;
       font-weight: 500;
-      font-size: 2rem;
+      font-size: 1rem;
+
+      @include tablet {
+        font-size: 3rem;
+      }
+
+      @include desktop {
+        font-size: 3rem;
+      }
     }
   }
 }
