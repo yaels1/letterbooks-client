@@ -184,16 +184,16 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
           <img src={happyFace} className="intro__header-logo" />
           Here we go!
         </h1>
-        <div className="intro__text">
-          <p>
+        <div className="intro__text-container">
+          <p className="intro__text">
             Here is a mini questionnaire to help figure out the best book for
             you.
           </p>
-          <p>
+          <p className="intro__text">
             Make your way through the questions, they fill filter out as you
             answer them,
           </p>
-          <p>
+          <p className="intro__text">
             so don't worry if there are no options for the later questions if
             you havent answered he previous one
           </p>
@@ -272,9 +272,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
 
         {/* button */}
         <div className=" form__button">
-          <button className="form__button-submit">
-            CLICK HERE TO GENERATE YOUR RECOMMENDATIONS!
-          </button>
+          <button className="form__button-submit">CLICK HERE!</button>
 
           <NavLink to="/" className="form__button-cancel">
             <p className="form__button-cancel-text">Cancel</p>
