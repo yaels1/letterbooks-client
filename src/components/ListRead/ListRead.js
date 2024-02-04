@@ -45,7 +45,7 @@ const ListRead = () => {
             className="read__container"
           >
             <img src={book.image} className="read__image" alt="" />
-            <div>
+            <div className="read__info">
               <p className="read__text read__title">Title: {book.title}</p>
               <p className="read__text read__author">Author: {book.name}</p>
               <p className="read__text read__pages">

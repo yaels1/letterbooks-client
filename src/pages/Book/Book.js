@@ -34,7 +34,7 @@ const AllBooks = () => {
           className="allbooks__container"
         >
           <img src={aBook.image} className="allbooks__image" />
-          <div>
+          <div className="allbooks__info">
             <p className="allbooks__text allbooks__title">
               Title: {aBook.title}
             </p>
