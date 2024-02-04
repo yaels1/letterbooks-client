@@ -10,6 +10,7 @@ import Book from "./pages/Book/Book";
 import SingleBook from "./components/SingleBook/SingleBook";
 import Lists from "./pages/Lists/Lists";
 import ListRead from "./components/ListRead/ListRead";
+import ListWish from "./components/ListWish/ListWish";
 import Questionnaire from "./pages/Questionnaire/Questionnaire";
 import ListRecommendation from "./components/ListRecommendation/ListRecommendation";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/book/:id" element={<SingleBook />} />
         <Route path="/list" element={<Lists />} />
         <Route path="/list/read" element={<ListRead />} />
+        <Route path="/list/wishlist" element={<ListWish />} />
         <Route path="/questionnaire" element={<Questionnaire />} />
         <Route path="/list/recommendations" element={<ListRecommendation />} />
         <Route path="/*" element={<div>page not found</div>} />

@@ -118,7 +118,6 @@
     display: flex;
     justify-content: space-between;
     @include block;
-    width: 80%;
 
     @include tablet {
       padding-block: 2rem;

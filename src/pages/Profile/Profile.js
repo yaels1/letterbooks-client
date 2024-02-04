@@ -123,6 +123,9 @@ function Profile() {
         <NavLink to="/list/read" className="Profile__nav-link">
           READ BOOKS
         </NavLink>
+        <NavLink to="/list/wishlist" className="Profile__nav-link">
+          WISHLIST
+        </NavLink>
         <NavLink to="/questionnaire" className="Profile__nav-link">
           QUESTIONNAIRE
         </NavLink>

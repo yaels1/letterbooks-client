@@ -14,11 +14,11 @@ const EmptyList = () => {
       </p>
       <div className="empty-list__link-container">
         <NavLink to="/list/book" className="empty-list__link">
-          <p>List of all books</p>
+          <p className="empty-list__link-text">List of all books</p>
         </NavLink>
 
         <NavLink to="/questionnaire" className="empty-list__link">
-          <p>Questionnaire</p>
+          <p className="empty-list__link-text">Questionnaire</p>
         </NavLink>
       </div>
     </div>

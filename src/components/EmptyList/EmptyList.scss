@@ -3,8 +3,25 @@
 @use "../../styles/partials/mixins" as *;
 
 .empty-list {
+  @include tablet {
+    margin-inline: $tablet-margin;
+  }
+
+  @include desktop {
+    max-width: $desktop-width;
+    margin: auto;
+  }
+
   &__text {
     @include block;
+
+    @include tablet {
+      font-size: 1.8rem;
+    }
+
+    @include desktop {
+      font-size: 2.5rem;
+    }
   }
 
   &__img {
@@ -20,5 +37,21 @@
   &__link {
     @include link;
     padding-inline: 1rem;
+
+    @include tablet {
+      margin-block: 1rem;
+    }
+  }
+
+  &__link-text {
+    @include tablet {
+      font-size: 2rem;
+      margin-block: 1.3rem;
+    }
+
+    @include desktop {
+      font-size: 2.5rem;
+      padding-block: 0;
+    }
   }
 }

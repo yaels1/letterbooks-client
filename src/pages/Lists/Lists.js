@@ -32,10 +32,14 @@ const Lists = () => {
                 <p>List of books you've read</p>
               </NavLink>
             </div>
-
             <div className="list__container">
               <NavLink to="/list/recommendations" className="list__title">
                 <p c>List of book recommendations</p>
+              </NavLink>
+            </div>
+            <div className="list__container">
+              <NavLink to="/list/wishlist" className="list__title">
+                <p>List of books you want to read</p>
               </NavLink>
             </div>
           </>

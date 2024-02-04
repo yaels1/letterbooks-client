@@ -32,7 +32,6 @@ const HomePage = () => {
                 There are around 50 books in here so far, which you can find in
                 the lists section
               </p>
-              <p>WISHLIST TO COME</p>
             </div>
           </div>
           <img

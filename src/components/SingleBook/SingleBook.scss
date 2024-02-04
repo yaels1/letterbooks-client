@@ -12,29 +12,85 @@
   &__container {
     @include link;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
+
+    @include tablet {
+      align-items: center;
+    }
+  }
+
+  &__container-column {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @include tablet {
+      flex-direction: column;
+    }
+
+    @include desktop {
+      flex-direction: row;
+    }
   }
 
   &__image {
     padding: 2rem;
     width: 15rem;
     @include link;
+
+    @include desktop {
+      width: 50%;
+    }
   }
 
   &__container-text {
     display: flex;
     flex-direction: column;
+    @include desktop {
+      width: 40%;
+    }
   }
 
   &__text {
     font-size: 1.25rem;
     font-weight: 500;
     padding-inline: 1rem;
+
+    @include tablet {
+      font-size: 1.5rem;
+    }
   }
 
   &__summary {
     font-size: 1rem;
+    display: flex;
+
+    @include tablet {
+      font-size: 1.5rem;
+    }
+
+    @include desktop {
+      display: none;
+    }
+
+    &--desktop {
+      display: none;
+      @include desktop {
+        display: flex;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include tablet {
+      flex-direction: row;
+    }
   }
 
   &__button {
@@ -42,9 +98,17 @@
     border: none;
     width: fit-content;
 
+    @include tablet {
+      padding: 1rem 4rem;
+    }
+
     &-text {
       @include link;
       padding: 1rem;
+
+      @include tablet {
+        font-size: 1.2rem;
+      }
     }
   }
 }
