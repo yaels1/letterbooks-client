@@ -1,6 +1,7 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
+
 .error {
   display: flex;
   align-items: center;
@@ -15,5 +16,10 @@
   &__message {
     color: $cancel-colour;
     margin-top: 0;
+
+    @include desktop {
+      font-size: 1.8rem;
+      margin-block: 1rem;
+    }
   }
 }

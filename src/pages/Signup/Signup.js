@@ -1,7 +1,7 @@
 import "./Signup.scss";
 import Input from "../../components/Input/Input";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormError from "../../components/FormError/FormError";
 
@@ -77,48 +77,64 @@ function Signup() {
 
   return (
     <main className="signup">
+      <h1 className="signup__title">Sign up</h1>
       <form className="signup__form" onSubmit={handleSubmit}>
-        <h1 className="signup__title">Sign up</h1>
-        <Input
-          type="text"
-          name="first_name"
-          label="First name"
-          value={formDetails.first_name}
-          onChange={handleChange}
-        />
+        <div className="signup__form-half-container">
+          <div className="signup__form-half">
+            <Input
+              type="text"
+              name="first_name"
+              label="First name"
+              value={formDetails.first_name}
+              onChange={handleChange}
+            />
 
-        <Input
-          type="text"
-          name="last_name"
-          label="Last name"
-          onChange={handleChange}
-        />
-        <Input type="text" name="phone" label="Phone" onChange={handleChange} />
-        <Input type="text" name="age" label="Age" onChange={handleChange} />
-        <Input
-          type="text"
-          name="address"
-          label="Address"
-          onChange={handleChange}
-        />
-        <Input
-          type="text"
-          name="fav_book"
-          label="Favourite book"
-          onChange={handleChange}
-        />
-        <Input type="text" name="email" label="Email" onChange={handleChange} />
+            <Input
+              type="text"
+              name="last_name"
+              label="Last name"
+              onChange={handleChange}
+            />
+            <Input
+              type="text"
+              name="phone"
+              label="Phone"
+              onChange={handleChange}
+            />
+            <Input type="text" name="age" label="Age" onChange={handleChange} />
+          </div>
+          <div className="signup__form-half">
+            <Input
+              type="text"
+              name="address"
+              label="Address"
+              onChange={handleChange}
+            />
+            <Input
+              type="text"
+              name="fav_book"
+              label="Favourite book"
+              onChange={handleChange}
+            />
+            <Input
+              type="text"
+              name="email"
+              label="Email"
+              onChange={handleChange}
+            />
 
-        <Input
-          type="password"
-          name="password"
-          label="Password"
-          onChange={handleChange}
-        />
+            <Input
+              type="password"
+              name="password"
+              label="Password"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
         <button type="submit" className="signup__button">
           Sign up
           {!formDetails && (
-            <div>
+            <div className="signup__error">
               <p>you must fill out all of the fields</p>
             </div>
           )}
@@ -130,10 +146,10 @@ function Signup() {
       </form>
 
       <p className="signup__no">
-        Have an account?{" "}
-        <Link to="/login" className="signup__no-link">
+        Already have an account?{" "}
+        <NavLink to="/login" className="signup__no-link">
           Log in
-        </Link>
+        </NavLink>
       </p>
     </main>
   );
