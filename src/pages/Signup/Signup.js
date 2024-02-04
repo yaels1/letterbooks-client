@@ -19,6 +19,7 @@ function Signup() {
     fav_book: "",
     email: "",
     password: "",
+    confirm_password: "",
   });
 
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -34,8 +35,43 @@ function Signup() {
 
   const formValidation = () => {
     const formErrors = {};
+    // email @
     if (!formDetails["email"].includes("@")) {
       formErrors["email"] = true;
+    }
+
+    // password one capital letter
+    if (!formDetails["password"].match(/[A-Z]/)) {
+      formErrors["password"] = true;
+    }
+
+    // password one special character
+    if (!formDetails["password"].match(/[^a-zA-Z0-9_]/)) {
+      formErrors["password"] = true;
+    }
+
+    // password one number
+    if (!formDetails["password"].match(/[0-9]/)) {
+      formErrors["password"] = true;
+    }
+
+    // password min 10 characters
+    if (!formDetails["password"].length > 10) {
+      formErrors["password"] = true;
+    }
+
+    // phone is 11 digits
+    if (!formDetails["phone"].length === 11) {
+      formErrors["phone"] = true;
+    }
+
+    // age is above 5 but below 120
+    if (Number(formDetails["age"]) > 120 || Number(formDetails["age"]) < 5) {
+      formErrors["age"] = true;
+    }
+
+    if (formDetails["confirm_password"] !== formDetails["password"]) {
+      formErrors["confirm_password"] = true;
     }
 
     Object.keys(formDetails).forEach((field) => {
@@ -60,6 +96,7 @@ function Signup() {
         await axios.post(`${apiUrl}/letterbooks/users/register`, {
           email: event.target.email.value,
           password: event.target.password.value,
+          confirm_password: event.target.confirm_password.value,
           first_name: event.target.first_name.value,
           last_name: event.target.last_name.value,
           age: event.target.age.value,
@@ -93,33 +130,44 @@ function Signup() {
               type="text"
               name="last_name"
               label="Last name"
+              value={formDetails.last_name}
               onChange={handleChange}
             />
             <Input
               type="text"
               name="phone"
               label="Phone"
+              value={formDetails.phone}
               onChange={handleChange}
             />
-            <Input type="text" name="age" label="Age" onChange={handleChange} />
+            <Input
+              type="number"
+              name="age"
+              label="Age"
+              value={formDetails.age}
+              onChange={handleChange}
+            />
           </div>
           <div className="signup__form-half">
             <Input
               type="text"
               name="address"
               label="Address"
+              value={formDetails.address}
               onChange={handleChange}
             />
             <Input
               type="text"
               name="fav_book"
               label="Favourite book"
+              value={formDetails.fav_book}
               onChange={handleChange}
             />
             <Input
               type="text"
               name="email"
               label="Email"
+              value={formDetails.email}
               onChange={handleChange}
             />
 
@@ -127,6 +175,14 @@ function Signup() {
               type="password"
               name="password"
               label="Password"
+              value={formDetails.password}
+              onChange={handleChange}
+            />
+            <Input
+              type="password"
+              name="confirm_password"
+              label="Confirm Password"
+              value={formDetails.confirm_password}
               onChange={handleChange}
             />
           </div>
