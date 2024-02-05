@@ -4,8 +4,9 @@
 
 .submitted {
   padding: 1rem;
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
+  @include flex($justify: center);
 
   @include tablet {
     margin: $tablet-margin;

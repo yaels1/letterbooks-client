@@ -1,10 +1,8 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.Profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.profile {
+  @include flex($direction: column);
   padding-inline: 0;
 
   @include tablet {
@@ -19,7 +17,6 @@
 
   &__title {
     @include block;
-
     @include tablet {
       font-size: 3rem;
     }
@@ -33,14 +30,9 @@
 
   &__info {
     @include block;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    @include flex($direction: column);
     @include tablet {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+      @include flex($justify: space-between);
       font-size: 1.5rem;
       border-bottom: 3px solid black;
     }
@@ -66,9 +58,7 @@
     &-middle {
       margin-inline: 1rem;
       border-block: 2px solid black;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      @include flex($direction: column);
 
       @include tablet {
         border: 0;
@@ -77,15 +67,11 @@
 
     &-img-container {
       @include block;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      @include flex($direction: column);
     }
 
     &-logo {
       width: 15%;
-
       @include tablet {
         width: 30%;
       }
@@ -115,8 +101,7 @@
   }
 
   &__nav {
-    display: flex;
-    justify-content: space-between;
+    @include flex($justify: space-between);
     @include block;
 
     @include tablet {
@@ -130,10 +115,9 @@
     &-link {
       @include block;
       @include link;
+      @include flex;
       padding: 0.5rem;
       font-size: 0.8rem;
-      display: flex;
-      align-items: center;
 
       @include tablet {
         margin-inline: 1rem;

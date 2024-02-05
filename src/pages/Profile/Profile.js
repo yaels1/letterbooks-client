@@ -52,18 +52,18 @@ function Profile() {
 
   if (!user) {
     return (
-      <main className="Profile">
+      <main className="profile">
         <p>Loading...</p>
       </main>
     );
   }
 
   return (
-    <main className="Profile">
-      <h1 className="Profile__title">Profile</h1>
+    <main className="profile">
+      <h1 className="profile__title">Profile</h1>
 
-      <div className="Profile__info">
-        <div className="Profile__info-text">
+      <div className="profile__info">
+        <div className="profile__info-text">
           <p>
             Welcome back, {user.first_name} {user.last_name}
           </p>
@@ -72,12 +72,12 @@ function Profile() {
           <p>Address: {user.address}</p>
           <p>Age: {user.age}</p>
           <p>You are a {user.role} </p>
-          <button className="Profile__logout" onClick={handleLogout}>
+          <button className="profile__logout" onClick={handleLogout}>
             Log out
           </button>
         </div>
-        <div className="Profile__info-text Profile__info-middle">
-          <img src={bookLogo} className="Profile__info-logo" />
+        <div className="profile__info-text Profile__info-middle">
+          <img src={bookLogo} className="profile__info-logo" />
           <p>
             Click on the all books button to go through all the books on this
             site.
@@ -86,30 +86,30 @@ function Profile() {
             Add them to your read books list to have a record of your own
             library!
           </p>
-          <img src={bookLogo} className="Profile__info-logo" />
+          <img src={bookLogo} className="profile__info-logo" />
         </div>
-        <div className="Profile__info-text Profile__info-img-container">
+        <div className="profile__info-text Profile__info-img-container">
           <p>Your favourite book is:</p>
           <p> {user.fav_book}</p>
           <p>Here's another nice cosy photo just for fun</p>
-          <img src={happyFace} className="Profile__info-logo" />
-          <img src={happyBook} className="Profile__info-img" />
+          <img src={happyFace} className="profile__info-logo" />
+          <img src={happyBook} className="profile__info-img" />
         </div>
       </div>
-      <div className="Profile__nav">
-        <NavLink to="/homepage" className="Profile__nav-link">
+      <div className="profile__nav">
+        <NavLink to="/homepage" className="profile__nav-link">
           HOME
         </NavLink>
-        <NavLink to="/list/book" className="Profile__nav-link">
+        <NavLink to="/list/book" className="profile__nav-link">
           ALL BOOKS
         </NavLink>
-        <NavLink to="/list/read" className="Profile__nav-link">
+        <NavLink to="/list/read" className="profile__nav-link">
           READ BOOKS
         </NavLink>
-        <NavLink to="/list/wishlist" className="Profile__nav-link">
+        <NavLink to="/list/wishlist" className="profile__nav-link">
           WISHLIST
         </NavLink>
-        <NavLink to="/questionnaire" className="Profile__nav-link">
+        <NavLink to="/questionnaire" className="profile__nav-link">
           QUESTIONNAIRE
         </NavLink>
       </div>
