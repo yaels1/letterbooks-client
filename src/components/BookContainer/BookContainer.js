@@ -9,8 +9,8 @@ const BookContainer = ({ image, title, name, pages, themes }) => {
         <p className="allbooks__text allbooks__author">Author: {name}</p>
         <p className="allbooks__text allbooks__pages">No. of Pages: {pages}</p>
         <p className="allbooks__text allbooks__themes">
-          Themes: {themes}
-          {/* Themes: {themes.join(", ")} */}
+          {/* Themes: {themes} */}
+          Themes: {themes.join(", ")}
         </p>
       </div>
     </>
