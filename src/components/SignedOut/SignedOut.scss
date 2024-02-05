@@ -1,0 +1,52 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.signed-out {
+  @include flex($direction: column);
+
+  &-text {
+    @include tablet {
+      font-size: 1.5rem;
+    }
+
+    @include desktop {
+      font-size: 2.5rem;
+    }
+  }
+
+  &-logo {
+    width: 10%;
+    margin-top: 1rem;
+  }
+
+  &-login {
+    margin: auto;
+    @include flex($justify: center, $align: flex-end);
+  }
+
+  &-arrow {
+    width: 10%;
+    margin-inline: 1rem;
+
+    @include tablet {
+      width: 15%;
+    }
+
+    @include desktop {
+      width: 20%;
+    }
+  }
+
+  &-link {
+    @include link;
+    padding: 0.5rem 1rem;
+
+    @include tablet {
+      font-size: 1.5rem;
+    }
+
+    @include desktop {
+      font-size: 2.5rem;
+    }
+  }
+}

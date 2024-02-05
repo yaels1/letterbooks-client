@@ -3,10 +3,8 @@ import "./QuestionnaireForm.scss";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import SignedOut from "../SignedOut/SignedOut";
 import happyFace from "../../assets/logo/smile.png";
-import sadFace from "../../assets/logo/sad-face.png";
-import arrowRight from "../../assets/logo/arrow-right.png";
-import arrowLeft from "../../assets/logo/arrow-left.png";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -161,22 +159,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
   }, []);
 
   if (failedAuth) {
-    return (
-      <main className="questionnaire__no">
-        <p className="questionnaire__no-text">
-          You must be logged in to see this page.
-        </p>
-        <img src={sadFace} className="questionnaire__no-logo" />
-
-        <div className="questionnaire__no-login">
-          <img src={arrowRight} className="questionnaire__no-arrow" />
-          <NavLink to="/login" className="questionnaire__no-link">
-            Log in
-          </NavLink>
-          <img src={arrowLeft} className="questionnaire__no-arrow" />
-        </div>
-      </main>
-    );
+    return <SignedOut />;
   }
 
   return (
