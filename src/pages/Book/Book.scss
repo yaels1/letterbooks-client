@@ -10,8 +10,7 @@
 
   &__container {
     @include link;
-    display: flex;
-    align-items: center;
+    @include flex;
     width: calc(100% / 3);
     &:hover {
       border: 0;
@@ -33,14 +32,12 @@
     display: none;
 
     @include desktop {
-      display: flex;
-      flex-direction: column;
+      @include flex($direction: column);
     }
   }
 
   &__image {
     padding: 0.2rem;
-    // width: 15rem;
     width: 100%;
     @include desktop {
       width: 30%;

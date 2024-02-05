@@ -3,14 +3,10 @@
 @use "../../styles/partials/mixins" as *;
 
 .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex($direction: column);
 
   &__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex($direction: column);
   }
 
   &__title {
