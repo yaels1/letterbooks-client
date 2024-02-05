@@ -20,7 +20,6 @@ const SingleBook = () => {
         `${apiUrl}/letterbooks/book/${params.id}`
       );
       setBook(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -30,12 +29,9 @@ const SingleBook = () => {
     fetchBookData();
   }, []);
 
-  console.log(book);
-
   const addBook = async (event) => {
     const token = localStorage.getItem("token");
     const decoded = jwtDecode(token);
-    console.log(decoded);
 
     try {
       const response = await axios.post(`${apiUrl}/letterbooks/list/read`, {
@@ -52,7 +48,6 @@ const SingleBook = () => {
   const addWishBook = async (event) => {
     const token = localStorage.getItem("token");
     const decoded = jwtDecode(token);
-    console.log(decoded);
 
     try {
       const response = await axios.post(`${apiUrl}/letterbooks/list/wishlist`, {

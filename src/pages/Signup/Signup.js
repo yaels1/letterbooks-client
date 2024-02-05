@@ -88,7 +88,7 @@ function Signup() {
     event.preventDefault();
 
     const validationError = formValidation();
-    console.log(validationError);
+    // console.log(validationError);
     setError(validationError);
 
     try {

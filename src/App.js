@@ -6,7 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import Profile from "./pages/Profile/Profile";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
-import Book from "./pages/Book/Book";
+import AllBooks from "./pages/AllBooks/AllBooks";
 import SingleBook from "./components/SingleBook/SingleBook";
 import Lists from "./pages/Lists/Lists";
 import ListRead from "./components/ListRead/ListRead";
@@ -24,7 +24,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/list/book" element={<Book />} />
+        <Route path="/list/book" element={<AllBooks />} />
         <Route path="/book/:id" element={<SingleBook />} />
         <Route path="/list" element={<Lists />} />
         <Route path="/list/read" element={<ListRead />} />

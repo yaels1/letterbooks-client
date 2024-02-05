@@ -30,7 +30,6 @@ function Profile() {
             },
           }
         );
-        console.log(data);
         setUser(data);
       } catch (error) {
         console.log(error);

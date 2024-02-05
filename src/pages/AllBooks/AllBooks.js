@@ -1,8 +1,10 @@
-import "./Book.scss";
+import "./AllBooks.scss";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+import BookContainer from "../../components/BookContainer/BookContainer";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -23,17 +25,24 @@ const AllBooks = () => {
 
   if (!allBooks) return <h1>Loading...</h1>;
 
-  console.log(allBooks);
-
   return (
     <div className="allbooks">
-      {allBooks.map((aBook) => (
+      {allBooks.map((book) => (
         <NavLink
-          to={`/book/${aBook.id}`}
-          key={aBook.id}
+          to={`/book/${book.id}`}
+          key={book.id}
           className="allbooks__container"
         >
-          <img src={aBook.image} className="allbooks__image" />
+          <BookContainer {...book} />
+        </NavLink>
+      ))}
+    </div>
+  );
+};
+export default AllBooks;
+
+{
+  /* <img src={aBook.image} className="allbooks__image" />
           <div className="allbooks__info">
             <p className="allbooks__text allbooks__title">
               Title: {aBook.title}
@@ -47,10 +56,5 @@ const AllBooks = () => {
             <p className="allbooks__text allbooks__themes">
               Themes: {aBook.themes.join(", ")}
             </p>
-          </div>
-        </NavLink>
-      ))}
-    </div>
-  );
-};
-export default AllBooks;
+          </div> */
+}

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 import EmptyList from "../EmptyList/EmptyList";
+import BookContainer from "../BookContainer/BookContainer";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -16,7 +17,6 @@ const ListWish = () => {
     try {
       const token = localStorage.getItem("token");
       const decoded = jwtDecode(token);
-      console.log(decoded);
 
       const response = await axios.get(
         `${apiUrl}/letterbooks/list/${decoded.id}/wishlist`
@@ -44,14 +44,7 @@ const ListWish = () => {
             key={book.id}
             className="wishlist__container"
           >
-            <img src={book.image} className="wishlist__image" alt="" />
-            <div className="wishlist__info">
-              <p className="wishlist__text read__title">Title: {book.title}</p>
-              <p className="wishlist__text read__author">Author: {book.name}</p>
-              <p className="wishlist__text read__pages">
-                No. of Pages: {book.pages}
-              </p>
-            </div>
+            <BookContainer {...book} />
           </Link>
         ))
       )}
