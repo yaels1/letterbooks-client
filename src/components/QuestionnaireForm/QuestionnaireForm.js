@@ -122,9 +122,10 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
   // if logged in or out
   useEffect(() => {
     const loadData = async () => {
-      const token = localStorage.getItem("token");
+      const tokensignup = localStorage.getItem("tokensignup");
+      const tokenlogin = localStorage.getItem("tokenlogin");
 
-      if (!token) {
+      if (!tokensignup || !tokenlogin) {
         return setFailedAuth(true);
       }
 
@@ -133,7 +134,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
           `${apiUrl}/letterbooks/users/profile`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${tokensignup}` || `Bearer ${tokenlogin}`,
             },
           }
         );
@@ -148,6 +149,10 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
   }, []);
 
   if (failedAuth) {
+    return <SignedOut />;
+  }
+
+  if (!user) {
     return <SignedOut />;
   }
 
@@ -168,12 +173,12 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
             you.
           </p>
           <p className="intro__text">
-            Make your way through the questions, they fill filter out as you
-            answer them,
+            Make your way through the questions, they fill filter out options as
+            you answer them,
           </p>
           <p className="intro__text">
             so don't worry if there are no options for the later questions if
-            you havent answered he previous one
+            you havent answered he previous one yet.
           </p>
         </div>
       </div>
@@ -184,21 +189,23 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
           <div className="form__container">
             <p className="form__question">Question 1</p>
 
-            <label htmlFor="question" className="form__question-label">
+            <label htmlFor="question1rad1" className="form__question-label">
               Fiction
               <input
                 type="radio"
                 name="question1"
+                id="question1rad1"
                 value="fiction"
                 className="form__question-input"
                 onChange={handleAnswer}
               />
             </label>
-            <label htmlFor="question" className="form__question-label">
+            <label htmlFor="question1rad2" className="form__question-label">
               Non-fiction
               <input
                 type="radio"
                 name="question1"
+                id="question1rad2"
                 value="non-fiction"
                 className="form__question-input"
                 onChange={handleAnswer}
