@@ -2,12 +2,12 @@ import "./QuestionnaireForm.scss";
 
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+
+import useGetTheme from "../../hooks/useGetTheme";
+import useAuth from "../../hooks/useAuth";
+
 import SignedOut from "../SignedOut/SignedOut";
 import happyFace from "../../assets/logo/smile.svg";
-import useGetTheme from "../../hooks/useGetTheme";
-
-const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
   const [answer, setAnswer] = useState({
@@ -116,47 +116,13 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
     }
   };
 
-  const [user, setUser] = useState(null);
-  const [failedAuth, setFailedAuth] = useState(false);
-
-  // if logged in or out
-  useEffect(() => {
-    const loadData = async () => {
-      const tokensignup = localStorage.getItem("tokensignup");
-      const tokenlogin = localStorage.getItem("tokenlogin");
-
-      if (!tokensignup || !tokenlogin) {
-        return setFailedAuth(true);
-      }
-
-      try {
-        const { data } = await axios.get(
-          `${apiUrl}/letterbooks/users/profile`,
-          {
-            headers: {
-              Authorization: `Bearer ${tokensignup}` || `Bearer ${tokenlogin}`,
-            },
-          }
-        );
-
-        setUser(data);
-      } catch (error) {
-        console.log(error);
-        setFailedAuth(true);
-      }
-    };
-    loadData();
-  }, []);
+  // login customhook
+  const { user, failedAuth, isAuthLoading } = useAuth();
+  if (isLoading || isAuthLoading) return <h1>Loading...</h1>;
 
   if (failedAuth) {
     return <SignedOut />;
   }
-
-  if (!user) {
-    return <SignedOut />;
-  }
-
-  if (isLoading) return <h1>Loading...</h1>;
 
   if (isError) return <h1>Something went wrong, please try again</h1>;
 

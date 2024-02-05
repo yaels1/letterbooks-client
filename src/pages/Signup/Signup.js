@@ -93,19 +93,27 @@ function Signup() {
 
     try {
       if (!Object.values(validationError).some((a) => a)) {
-        await axios.post(`${apiUrl}/letterbooks/users/register`, {
-          email: event.target.email.value,
-          password: event.target.password.value,
-          confirm_password: event.target.confirm_password.value,
-          first_name: event.target.first_name.value,
-          last_name: event.target.last_name.value,
-          age: event.target.age.value,
-          phone: event.target.phone.value,
-          fav_book: event.target.fav_book.value,
-          address: event.target.address.value,
-        });
+        const response = await axios.post(
+          `${apiUrl}/letterbooks/users/register`,
+          {
+            email: event.target.email.value,
+            password: event.target.password.value,
+            confirm_password: event.target.confirm_password.value,
+            first_name: event.target.first_name.value,
+            last_name: event.target.last_name.value,
+            age: event.target.age.value,
+            phone: event.target.phone.value,
+            fav_book: event.target.fav_book.value,
+            address: event.target.address.value,
+          }
+        );
+
+        const tokenlogin = response.data.token;
+
+        localStorage.setItem("tokenlogin", tokenlogin);
+
         setFormSubmitted(true);
-        navigate("/login");
+        navigate("/homepage");
       }
     } catch (error) {
       console.log(error);

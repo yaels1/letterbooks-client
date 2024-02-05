@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Lists = () => {
   const [loggedIn, setLoggedIn] = useState(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("tokenlogin");
     return token?.length > 0;
   });
 

@@ -11,11 +11,11 @@ const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 const SingleBook = () => {
   const { singleBook, isLoading, isError } = useGetSingleBook();
   const navigate = useNavigate();
+  const token = localStorage.getItem("tokenlogin");
+  const decoded = jwtDecode(token);
+  console.log(decoded);
 
   const addBook = async (event) => {
-    const token = localStorage.getItem("token");
-    const decoded = jwtDecode(token);
-
     try {
       await axios.post(`${apiUrl}/letterbooks/list/read`, {
         book_id: singleBook.id,
@@ -29,7 +29,7 @@ const SingleBook = () => {
   };
 
   const addWishBook = async (event) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("tokenlogin");
     const decoded = jwtDecode(token);
 
     try {
@@ -45,7 +45,7 @@ const SingleBook = () => {
   };
 
   const [loggedIn, setLoggedIn] = useState(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("tokenlogin");
     return token?.length > 0;
   });
 

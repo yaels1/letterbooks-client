@@ -19,7 +19,9 @@ function Login() {
         password: event.target.password.value,
       });
 
-      localStorage.setItem("token", response.data.token);
+      const tokenlogin = response.data.token;
+      console.log(tokenlogin);
+      localStorage.setItem("tokenlogin", tokenlogin);
 
       navigate("/homepage");
     } catch (error) {

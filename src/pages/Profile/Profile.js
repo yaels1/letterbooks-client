@@ -2,6 +2,9 @@ import "./Profile.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
+import useAuth from "../../hooks/useAuth";
+
 import SignedOut from "../../components/SignedOut/SignedOut";
 import happyBook from "../../assets/images/coffee-book.jpg";
 import happyFace from "../../assets/logo/happy-face.svg";
@@ -10,39 +13,10 @@ import bookLogo from "../../assets/logo/books-stack-of-three (1).png";
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 function Profile() {
-  const [user, setUser] = useState(null);
-  const [failedAuth, setFailedAuth] = useState(false);
-
-  useEffect(() => {
-    const loadData = async () => {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        return setFailedAuth(true);
-      }
-
-      try {
-        const { data } = await axios.get(
-          `${apiUrl}/letterbooks/users/profile`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setUser(data);
-      } catch (error) {
-        console.log(error);
-        setFailedAuth(true);
-      }
-    };
-    loadData();
-  }, []);
+  const { user, failedAuth, isAuthLoading } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-    setFailedAuth(true);
+    localStorage.removeItem("tokenlogin");
   };
 
   if (failedAuth) {
