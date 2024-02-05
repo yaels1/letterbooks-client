@@ -5,15 +5,10 @@
 .book {
   @include block;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+  @include flex($direction: column);
   &__container {
     @include link;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    @include flex($direction: column, $align: flex-start);
     padding: 1rem;
 
     @include tablet {
@@ -22,9 +17,7 @@
   }
 
   &__container-column {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    @include flex($gap: 2rem);
 
     @include tablet {
       flex-direction: column;
@@ -47,8 +40,7 @@
   }
 
   &__container-text {
-    display: flex;
-    flex-direction: column;
+    @include flex($direction: column);
     @include desktop {
       width: 40%;
     }
@@ -85,9 +77,10 @@
   }
 
   &__buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    @include flex($direction: column);
 
     @include tablet {
       flex-direction: row;

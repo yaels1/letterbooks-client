@@ -29,9 +29,10 @@
   }
 
   &__link-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-around;
+    @include flex($justify: space-around);
   }
 
   &__link {

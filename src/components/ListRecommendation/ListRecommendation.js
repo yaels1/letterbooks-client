@@ -8,6 +8,8 @@ const ListRecommendation = () => {
 
   console.log(bookRecList);
 
+  if (!bookRecList) return <EmptyList />;
+
   return (
     <div className="results">
       {bookRecList.length < 1 ? (

@@ -5,8 +5,7 @@
   margin: 2rem;
   margin-bottom: 0;
   border-bottom: 2px solid black;
-  display: flex;
-  flex-direction: column;
+  @include flex($direction: column);
 
   @include tablet {
     border-bottom: 4px solid black;
@@ -19,9 +18,7 @@
   }
 
   &__title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex($justify: center);
     font-weight: 700;
     font-size: 1rem;
     border-bottom: 2px solid $secondary-colour;
@@ -57,8 +54,7 @@
 }
 
 .nav {
-  display: flex;
-  justify-content: space-around;
+  @include flex($justify: space-around);
   margin: 0.5rem;
 
   @include tablet {
