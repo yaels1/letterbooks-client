@@ -56,6 +56,12 @@
     }
   }
 
+  &__title {
+    @include desktop {
+      font-size: 2rem;
+    }
+  }
+
   &__summary {
     font-size: 1rem;
     display: flex;
