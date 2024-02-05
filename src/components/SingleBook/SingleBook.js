@@ -1,7 +1,7 @@
 import "./SingleBook.scss";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import useGetSingleBook from "../../hooks/useGetSingleBook";
 
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -9,33 +9,16 @@ import { useNavigate } from "react-router-dom";
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 const SingleBook = () => {
-  const params = useParams();
-  const [book, setBook] = useState(null);
-
+  const { singleBook, isLoading, isError } = useGetSingleBook();
   const navigate = useNavigate();
-
-  const fetchBookData = async () => {
-    try {
-      const response = await axios.get(
-        `${apiUrl}/letterbooks/book/${params.id}`
-      );
-      setBook(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchBookData();
-  }, []);
 
   const addBook = async (event) => {
     const token = localStorage.getItem("token");
     const decoded = jwtDecode(token);
 
     try {
-      const response = await axios.post(`${apiUrl}/letterbooks/list/read`, {
-        book_id: book.id,
+      await axios.post(`${apiUrl}/letterbooks/list/read`, {
+        book_id: singleBook.id,
         user_id: decoded.id,
       });
 
@@ -50,8 +33,8 @@ const SingleBook = () => {
     const decoded = jwtDecode(token);
 
     try {
-      const response = await axios.post(`${apiUrl}/letterbooks/list/wishlist`, {
-        book_id: book.id,
+      await axios.post(`${apiUrl}/letterbooks/list/wishlist`, {
+        book_id: singleBook.id,
         user_id: decoded.id,
       });
 
@@ -66,23 +49,25 @@ const SingleBook = () => {
     return token?.length > 0;
   });
 
-  if (!book) return <h1>Loading...</h1>;
+  if (isLoading) return <h1>Loading...</h1>;
+  if (isError) return <h1>Something went wrong, please try again</h1>;
+
   return (
     <main>
       {!loggedIn && (
         <div className="book">
           <div className="book__container">
             <div className="book__container-column">
-              <img className="book__image" src={book.image} alt="" />
+              <img className="book__image" src={singleBook.image} alt="" />
               <div className="book__container-text">
-                <p className="book__text book__title">{book.title}</p>
-                <p className="book__text book__author">{book.name}</p>
+                <p className="book__text book__title">{singleBook.title}</p>
+                <p className="book__text book__author">{singleBook.name}</p>
                 <p className="book__text book__summary book__summary--desktop">
-                  {book.summary}
+                  {singleBook.summary}
                 </p>
               </div>
             </div>
-            <p className=" book__summary">{book.summary}</p>
+            <p className=" book__summary">{singleBook.summary}</p>
           </div>
         </div>
       )}
@@ -91,16 +76,16 @@ const SingleBook = () => {
         <div className="book">
           <div className="book__container">
             <div className="book__container-column">
-              <img className="book__image" src={book.image} alt="" />
+              <img className="book__image" src={singleBook.image} alt="" />
               <div className="book__container-text">
-                <p className="book__text book__title">{book.title}</p>
-                <p className="book__text book__author">{book.name}</p>
+                <p className="book__text book__title">{singleBook.title}</p>
+                <p className="book__text book__author">{singleBook.name}</p>
                 <p className="book__text book__summary book__summary--desktop">
-                  {book.summary}
+                  {singleBook.summary}
                 </p>
               </div>
             </div>
-            <p className=" book__summary">{book.summary}</p>
+            <p className=" book__summary">{singleBook.summary}</p>
           </div>
           <div className="book__buttons">
             <button onClick={addBook} className="book__button">

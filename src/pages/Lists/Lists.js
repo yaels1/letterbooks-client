@@ -34,7 +34,7 @@ const Lists = () => {
             </div>
             <div className="list__container">
               <NavLink to="/list/recommendations" className="list__title">
-                <p c>List of book recommendations</p>
+                <p>List of book recommendations</p>
               </NavLink>
             </div>
             <div className="list__container">

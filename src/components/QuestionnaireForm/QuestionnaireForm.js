@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import SignedOut from "../SignedOut/SignedOut";
 import happyFace from "../../assets/logo/smile.svg";
+import useGetTheme from "../../hooks/useGetTheme";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
@@ -14,7 +15,6 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
     question2: null,
     question3: null,
   });
-  const [listAllBooks, setListAllBooks] = useState([]);
   const [menuTheme, setMenuTheme] = useState([]);
   const [bookLength, setBookLength] = useState({
     areSmallBooks: false,
@@ -27,18 +27,7 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
     setAnswer({ ...answer, [name]: value });
   };
 
-  const fetchThemes = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/letterbooks/book`);
-      setListAllBooks(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchThemes();
-  }, []);
+  const { listAllBooks, isLoading, isError } = useGetTheme();
 
   function filterByFiction(books) {
     return books.filter((book) => {
@@ -161,6 +150,10 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
   if (failedAuth) {
     return <SignedOut />;
   }
+
+  if (isLoading) return <h1>Loading...</h1>;
+
+  if (isError) return <h1>Something went wrong, please try again</h1>;
 
   return (
     <main>

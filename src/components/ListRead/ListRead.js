@@ -1,37 +1,16 @@
 import "./ListRead.scss";
 
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 
 import EmptyList from "../EmptyList/EmptyList";
 import BookContainer from "../BookContainer/BookContainer";
-
-const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
+import useGetReadBook from "../../hooks/useGetReadBook";
 
 const ListRead = () => {
-  const [readBooks, setReadBooks] = useState(null);
+  const { readBooks, isLoading, isError } = useGetReadBook();
 
-  const fetchReadBooks = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const decoded = jwtDecode(token);
-
-      const response = await axios.get(
-        `${apiUrl}/letterbooks/list/${decoded.id}/read`
-      );
-      setReadBooks(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchReadBooks();
-  }, []);
-
-  if (!readBooks) return <h1>Loading...</h1>;
+  if (isLoading) return <h1>Loading...</h1>;
+  if (isError) return <h1>Something went wrong, please try again</h1>;
 
   return (
     <div className="read">
