@@ -32,8 +32,6 @@
     display: none;
 
     @include desktop {
-      // display: flex;
-      // flex-direction: column;
       @include flex($direction: column);
     }
   }
