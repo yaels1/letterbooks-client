@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import SignedOut from "../../components/SignedOut/SignedOut";
 import happyBook from "../../assets/images/coffee-book.jpg";
-import happyFace from "../../assets/logo/happy-face.png";
+import happyFace from "../../assets/logo/happy-face.svg";
 import bookLogo from "../../assets/logo/books-stack-of-three (1).png";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;

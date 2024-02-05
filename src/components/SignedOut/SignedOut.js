@@ -2,7 +2,7 @@ import "./SignedOut.scss";
 
 import { NavLink } from "react-router-dom";
 
-import sadFace from "../../assets/logo/sad-face.png";
+import sadFace from "../../assets/logo/sad-face.svg";
 import arrowRight from "../../assets/logo/arrow-right.png";
 import arrowLeft from "../../assets/logo/arrow-left.png";
 

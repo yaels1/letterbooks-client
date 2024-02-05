@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import SignedOut from "../SignedOut/SignedOut";
-import happyFace from "../../assets/logo/smile.png";
+import happyFace from "../../assets/logo/smile.svg";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 

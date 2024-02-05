@@ -1,7 +1,7 @@
 import "./EmptyList.scss";
 
 import { NavLink } from "react-router-dom";
-import sadFace from "../../assets/logo/sad-face.png";
+import sadFace from "../../assets/logo/sad-face.svg";
 
 const EmptyList = () => {
   return (
