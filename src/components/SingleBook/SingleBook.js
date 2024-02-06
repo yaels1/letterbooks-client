@@ -13,7 +13,6 @@ const SingleBook = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("tokenlogin");
   const decoded = jwtDecode(token);
-  console.log(decoded);
 
   const addBook = async (event) => {
     try {

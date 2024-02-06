@@ -55,8 +55,8 @@ function Signup() {
       formErrors["password"] = true;
     }
 
-    // password min 10 characters
-    if (!formDetails["password"].length > 10) {
+    // password min 5 characters
+    if (!formDetails["password"].length > 5) {
       formErrors["password"] = true;
     }
 
@@ -88,7 +88,7 @@ function Signup() {
     event.preventDefault();
 
     const validationError = formValidation();
-    // console.log(validationError);
+
     setError(validationError);
 
     try {
@@ -116,7 +116,7 @@ function Signup() {
         navigate("/homepage");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -144,7 +144,7 @@ function Signup() {
             <Input
               type="text"
               name="phone"
-              label="Phone"
+              label="Phone (must be 11 digits)"
               value={formDetails.phone}
               onChange={handleChange}
             />
@@ -155,8 +155,6 @@ function Signup() {
               value={formDetails.age}
               onChange={handleChange}
             />
-          </div>
-          <div className="signup__form-half">
             <Input
               type="text"
               name="address"
@@ -164,6 +162,8 @@ function Signup() {
               value={formDetails.address}
               onChange={handleChange}
             />
+          </div>
+          <div className="signup__form-half">
             <Input
               type="text"
               name="fav_book"
@@ -174,7 +174,7 @@ function Signup() {
             <Input
               type="text"
               name="email"
-              label="Email"
+              label="Email (must have an @)"
               value={formDetails.email}
               onChange={handleChange}
             />
@@ -182,7 +182,7 @@ function Signup() {
             <Input
               type="password"
               name="password"
-              label="Password"
+              label="Password (must have: 1 capital, 1 special, 1 number, min 5 characters)"
               value={formDetails.password}
               onChange={handleChange}
             />

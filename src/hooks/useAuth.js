@@ -22,7 +22,6 @@ const useAuth = () => {
       const token = tokenlogin;
 
       try {
-        console.log("Doing request with:" + token);
         const { data } = await axios.get(
           `${apiUrl}/letterbooks/users/profile`,
           {
@@ -33,10 +32,9 @@ const useAuth = () => {
         );
 
         setUser(data);
-        // console.log(data, "error?");
       } catch (error) {
         console.error(error);
-        // console.log(error, "this is error");
+
         setFailedAuth(true);
       } finally {
         setIsAuthLoading(false);

@@ -17,7 +17,7 @@ const useGetWishBook = () => {
       const response = await axios.get(
         `${apiUrl}/letterbooks/list/${decoded.id}/wishlist`
       );
-      //   console.log(response.data);
+
       setWishlistBooks(response.data);
     } catch (error) {
       console.error(error);

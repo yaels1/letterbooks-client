@@ -20,7 +20,7 @@ function Login() {
       });
 
       const tokenlogin = response.data.token;
-      console.log(tokenlogin);
+
       localStorage.setItem("tokenlogin", tokenlogin);
 
       navigate("/homepage");
