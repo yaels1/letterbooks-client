@@ -6,11 +6,12 @@ import { useState } from "react";
 const HomePage = () => {
   const [loggedIn, setLoggedIn] = useState(() => {
     const token = localStorage.getItem("tokenlogin");
+
     return token?.length > 0;
   });
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("tokenlogin");
     setLoggedIn(false);
   };
 
@@ -64,7 +65,6 @@ const HomePage = () => {
               <p className="homepage__nav-header">LOGIN</p>
             </NavLink>
           )}
-          {}
         </div>
       </div>
     </main>

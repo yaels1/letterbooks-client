@@ -5,16 +5,18 @@ import useGetSingleBook from "../../hooks/useGetSingleBook";
 
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 const SingleBook = () => {
   const { singleBook, isLoading, isError } = useGetSingleBook();
+
   const navigate = useNavigate();
   const token = localStorage.getItem("tokenlogin");
-  const decoded = jwtDecode(token);
 
-  const addBook = async (event) => {
+  const addBook = async () => {
+    const decoded = jwtDecode(token);
     try {
       await axios.post(`${apiUrl}/letterbooks/list/read`, {
         book_id: singleBook.id,
@@ -27,10 +29,8 @@ const SingleBook = () => {
     }
   };
 
-  const addWishBook = async (event) => {
-    const token = localStorage.getItem("tokenlogin");
+  const addWishBook = async () => {
     const decoded = jwtDecode(token);
-
     try {
       await axios.post(`${apiUrl}/letterbooks/list/wishlist`, {
         book_id: singleBook.id,
@@ -45,6 +45,7 @@ const SingleBook = () => {
 
   const [loggedIn, setLoggedIn] = useState(() => {
     const token = localStorage.getItem("tokenlogin");
+
     return token?.length > 0;
   });
 

@@ -13,11 +13,7 @@ import bookLogo from "../../assets/logo/books-stack-of-three (1).png";
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 function Profile() {
-  const { user, failedAuth, isAuthLoading } = useAuth();
-
-  const handleLogout = () => {
-    localStorage.removeItem("tokenlogin");
-  };
+  const { user, failedAuth, handleLogout } = useAuth();
 
   if (failedAuth) {
     return <SignedOut />;
