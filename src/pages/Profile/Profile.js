@@ -2,6 +2,7 @@ import "./Profile.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 
@@ -14,6 +15,8 @@ const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 function Profile() {
   const { user, failedAuth, handleLogout } = useAuth();
+
+  const navigate = useNavigate();
 
   if (failedAuth) {
     return <SignedOut />;
@@ -41,7 +44,13 @@ function Profile() {
           <p>Address: {user.address}</p>
           <p>Age: {user.age}</p>
           <p>You are a {user.role} </p>
-          <button className="profile__logout" onClick={handleLogout}>
+          <button
+            className="profile__logout"
+            onClick={() => {
+              handleLogout();
+              navigate("/");
+            }}
+          >
             Log out
           </button>
         </div>
