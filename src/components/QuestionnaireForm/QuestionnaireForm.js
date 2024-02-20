@@ -92,7 +92,6 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
   // check if all questions answered
   const isFormValid = () => {
     if (!answer.question1 || !answer.question2 || !answer.question3) {
-      console.log("Please answer all the questions");
       return false;
     } else {
       return true;
@@ -112,7 +111,6 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
       localStorage.setItem("bookRecs", JSON.stringify(selectedBooks));
       setSubmitted(true);
     } else {
-      console.log("pls answer all necessary questions");
     }
   };
 

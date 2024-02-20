@@ -22,7 +22,7 @@ const HomePage = () => {
         <div className="homepage__intro">
           <div className="homepage__text">
             <div className="homepage__text-container">
-              <p>This is an book app</p>
+              <p>This is a book app</p>
               <p>
                 There is a quick easy questionnaire to take, to figure out which
                 book will be your next adventure.
