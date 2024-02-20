@@ -8,9 +8,21 @@ import FormError from "../../components/FormError/FormError";
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 function Signup() {
-  const [error, setError] = useState({});
+  // const [error, setError] = useState({});
 
   const [formDetails, setFormDetails] = useState({
+    first_name: "",
+    last_name: "",
+    phone: "",
+    age: "",
+    address: "",
+    fav_book: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
+
+  const [formErrors, setFormErrors] = useState({
     first_name: "",
     last_name: "",
     phone: "",
@@ -34,87 +46,122 @@ function Signup() {
   };
 
   const formValidation = () => {
-    const formErrors = {};
+    let isValid = true;
+
+    Object.keys(formDetails).forEach((field) => {
+      const isError = formDetails[field].trim().length === 0;
+      if (isError) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [field]: "This field is required",
+        }));
+      }
+    });
+
     // email @
     if (!formDetails["email"].includes("@")) {
-      formErrors["email"] = true;
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Email must include an @",
+      }));
+      isValid = false;
     }
 
     // password one capital letter
     if (!formDetails["password"].match(/[A-Z]/)) {
-      formErrors["password"] = true;
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password must include a capital letter",
+      }));
+      isValid = false;
     }
 
     // password one special character
     if (!formDetails["password"].match(/[^a-zA-Z0-9_]/)) {
-      formErrors["password"] = true;
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password must include a special character",
+      }));
+      isValid = false;
     }
 
     // password one number
     if (!formDetails["password"].match(/[0-9]/)) {
-      formErrors["password"] = true;
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password must include a number",
+      }));
+      isValid = false;
     }
 
     // password min 5 characters
-    if (!formDetails["password"].length > 5) {
-      formErrors["password"] = true;
+    if (formDetails["password"].length <= 5) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password must be longer than 5 characters",
+      }));
+      isValid = false;
     }
 
     // phone is 11 digits
-    if (!formDetails["phone"].length === 11) {
-      formErrors["phone"] = true;
+    if (formDetails["phone"].length !== 11) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        phone: "Phone number must be 11 digits",
+      }));
+      isValid = false;
     }
 
     // age is above 5 but below 120
     if (Number(formDetails["age"]) > 120 || Number(formDetails["age"]) < 5) {
-      formErrors["age"] = true;
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        age: "Age must be between 5 and 120 years old",
+      }));
+      isValid = false;
     }
 
     if (formDetails["confirm_password"] !== formDetails["password"]) {
-      formErrors["confirm_password"] = true;
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        confirm_password: "Passwords must be the same",
+      }));
+      isValid = false;
     }
 
-    Object.keys(formDetails).forEach((field) => {
-      const isError = formDetails[field].trim().length == 0;
-      if (isError) {
-        formErrors[field] = true;
-      }
-    });
-
-    return formErrors;
+    // return formErrors;
+    return isValid;
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const validationError = formValidation();
-
-    setError(validationError);
+    if (!formValidation()) return;
 
     try {
-      if (!Object.values(validationError).some((a) => a)) {
-        const response = await axios.post(
-          `${apiUrl}/letterbooks/users/register`,
-          {
-            email: event.target.email.value,
-            password: event.target.password.value,
-            confirm_password: event.target.confirm_password.value,
-            first_name: event.target.first_name.value,
-            last_name: event.target.last_name.value,
-            age: event.target.age.value,
-            phone: event.target.phone.value,
-            fav_book: event.target.fav_book.value,
-            address: event.target.address.value,
-          }
-        );
+      // if (!Object.values(validationError).some((a) => a)) {
+      const response = await axios.post(
+        `${apiUrl}/letterbooks/users/register`,
+        {
+          email: event.target.email.value,
+          password: event.target.password.value,
+          confirm_password: event.target.confirm_password.value,
+          first_name: event.target.first_name.value,
+          last_name: event.target.last_name.value,
+          age: event.target.age.value,
+          phone: event.target.phone.value,
+          fav_book: event.target.fav_book.value,
+          address: event.target.address.value,
+        }
+      );
 
-        const tokenlogin = response.data.token;
+      const tokenlogin = response.data.token;
 
-        localStorage.setItem("tokenlogin", tokenlogin);
+      localStorage.setItem("tokenlogin", tokenlogin);
 
-        setFormSubmitted(true);
-        navigate("/homepage");
-      }
+      setFormSubmitted(true);
+      navigate("/homepage");
+      // }
     } catch (error) {
       console.error(error);
     }
@@ -131,6 +178,7 @@ function Signup() {
               name="first_name"
               label="First name"
               value={formDetails.first_name}
+              error={formErrors.first_name}
               onChange={handleChange}
             />
 
@@ -139,13 +187,15 @@ function Signup() {
               name="last_name"
               label="Last name"
               value={formDetails.last_name}
+              error={formErrors.last_name}
               onChange={handleChange}
             />
             <Input
               type="text"
               name="phone"
-              label="Phone (must be 11 digits)"
+              label="Phone"
               value={formDetails.phone}
+              error={formErrors.phone}
               onChange={handleChange}
             />
             <Input
@@ -153,6 +203,7 @@ function Signup() {
               name="age"
               label="Age"
               value={formDetails.age}
+              error={formErrors.age}
               onChange={handleChange}
             />
             <Input
@@ -160,6 +211,7 @@ function Signup() {
               name="address"
               label="Address"
               value={formDetails.address}
+              error={formErrors.address}
               onChange={handleChange}
             />
           </div>
@@ -169,21 +221,24 @@ function Signup() {
               name="fav_book"
               label="Favourite book"
               value={formDetails.fav_book}
+              error={formErrors.fav_book}
               onChange={handleChange}
             />
             <Input
               type="text"
               name="email"
-              label="Email (must have an @)"
+              label="Email"
               value={formDetails.email}
+              error={formErrors.email}
               onChange={handleChange}
             />
 
             <Input
               type="password"
               name="password"
-              label="Password (must have: 1 capital, 1 special, 1 number, min 5 characters)"
+              label="Password"
               value={formDetails.password}
+              error={formErrors.password}
               onChange={handleChange}
             />
             <Input
@@ -191,6 +246,7 @@ function Signup() {
               name="confirm_password"
               label="Confirm Password"
               value={formDetails.confirm_password}
+              error={formErrors.confirm_password}
               onChange={handleChange}
             />
           </div>
@@ -204,9 +260,10 @@ function Signup() {
           )}
         </button>
 
-        {Object.values(error).some((error) => error) && (
-          <FormError error={error} />
+        {Object.values(formErrors).some((formErrors) => formErrors) && (
+          <FormError />
         )}
+        {/* {formErrors && <FormError />} */}
       </form>
 
       <p className="signup__no">

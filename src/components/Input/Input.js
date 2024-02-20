@@ -1,9 +1,9 @@
 import "./Input.scss";
 
-function Input({ label, name, onChange, value, type }) {
+function Input({ label, name, onChange, value, type, error }) {
   return (
     <div className="field ">
-      <label htmlFor={name} className="field-label">
+      <label htmlFor={name} className="field__label">
         {label}
       </label>
       <input
@@ -12,8 +12,9 @@ function Input({ label, name, onChange, value, type }) {
         name={name}
         onChange={onChange}
         value={value}
-        className="field-input"
+        className="field__input"
       />
+      {error && <p className="field__error">{error}</p>}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import "./FormError.scss";
 import errorImg from "../../assets/logo/error.png";
 
-const FormError = ({ error }) => {
+const FormError = () => {
   return (
     <div className="error">
       <img
