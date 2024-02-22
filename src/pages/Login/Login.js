@@ -32,6 +32,12 @@ function Login() {
           [field]: "This field is required",
         }));
       }
+      if (!isError) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [field]: "",
+        }));
+      }
     });
 
     if (!formDetails["email"]) {
