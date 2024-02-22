@@ -8,8 +8,6 @@ import FormError from "../../components/FormError/FormError";
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 function Signup() {
-  // const [error, setError] = useState({});
-
   const [formDetails, setFormDetails] = useState({
     first_name: "",
     last_name: "",
@@ -33,8 +31,6 @@ function Signup() {
     password: "",
     confirm_password: "",
   });
-
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const navigate = useNavigate();
 
@@ -129,7 +125,6 @@ function Signup() {
       isValid = false;
     }
 
-    // return formErrors;
     return isValid;
   };
 
@@ -139,7 +134,6 @@ function Signup() {
     if (!formValidation()) return;
 
     try {
-      // if (!Object.values(validationError).some((a) => a)) {
       const response = await axios.post(
         `${apiUrl}/letterbooks/users/register`,
         {
@@ -159,9 +153,7 @@ function Signup() {
 
       localStorage.setItem("tokenlogin", tokenlogin);
 
-      setFormSubmitted(true);
       navigate("/homepage");
-      // }
     } catch (error) {
       console.error(error);
     }
@@ -263,7 +255,6 @@ function Signup() {
         {Object.values(formErrors).some((formErrors) => formErrors) && (
           <FormError />
         )}
-        {/* {formErrors && <FormError />} */}
       </form>
 
       <p className="signup__no">
