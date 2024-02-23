@@ -1,15 +1,21 @@
 import "./QuestionnaireForm.scss";
-
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import useGetTheme from "../../hooks/useGetTheme";
 import useAuth from "../../hooks/useAuth";
 
+import { jwtDecode } from "jwt-decode";
+
 import SignedOut from "../SignedOut/SignedOut";
 import happyFace from "../../assets/logo/smile.svg";
 
+const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
+
 const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
+  const token = localStorage.getItem("tokenlogin");
+
   const [answer, setAnswer] = useState({
     question1: null,
     question2: null,
@@ -108,7 +114,17 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
       );
 
       setAnswerBooks(selectedBooks);
-      localStorage.setItem("bookRecs", JSON.stringify(selectedBooks));
+      // localStorage.setItem("bookRecs", JSON.stringify(selectedBooks));
+      const decoded = jwtDecode(token);
+      try {
+        await axios.post(`${apiUrl}/letterbooks/list.recs`, {
+          book_id: selectedBooks.id,
+          user_id: decoded.id,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+
       setSubmitted(true);
     } else {
     }
