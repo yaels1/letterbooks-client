@@ -242,4 +242,6 @@ _USERS_
 - Forgot password functionality
 - More books
 - Forgot password functionality
-- Ability to add books not in the system to wishlist / reaad books list
+- Ability to add books not in the system to wishlist / read books list
+
+- filter in recommendations to show if in wishlist

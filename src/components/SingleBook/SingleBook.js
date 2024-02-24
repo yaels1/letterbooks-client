@@ -89,11 +89,11 @@ const SingleBook = () => {
           </div>
           <div className="book__buttons">
             <button onClick={addBook} className="book__button">
-              <p className="book__button-text">ADD TO READ BOOKS</p>
+              <p className="book__button-text">MOVE TO READ BOOKS</p>
             </button>
 
             <button onClick={addWishBook} className="book__button">
-              <p className="book__button-text">ADD TO WISHLIST</p>
+              <p className="book__button-text">MOVE TO WISHLIST</p>
             </button>
           </div>
         </div>

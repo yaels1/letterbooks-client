@@ -18,17 +18,17 @@ const ListRecommendation = () => {
     <>
       <h2 className="title">Book Recommendations</h2>
       <div className="results">
-        {bookRecList.length < 1 ? (
+        {recsBooks.length < 1 ? (
           <EmptyList />
         ) : (
-          bookRecList.map((book) => (
-            <NavLink
+          recsBooks.map((book) => (
+            <Link
               to={`/book/${book.id}`}
               key={book.id}
               className="results__container"
             >
               <BookContainer {...book} />
-            </NavLink>
+            </Link>
           ))
         )}
       </div>
