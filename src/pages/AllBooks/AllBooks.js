@@ -13,17 +13,20 @@ const AllBooks = () => {
   if (isError) return <h1>Something went wrong, please try again</h1>;
 
   return (
-    <div className="allbooks">
-      {allBooks.map((book) => (
-        <NavLink
-          to={`/book/${book.id}`}
-          key={book.id}
-          className="allbooks__container"
-        >
-          <BookContainer {...book} />
-        </NavLink>
-      ))}
-    </div>
+    <>
+      <h2 className="title">All Books</h2>
+      <div className="allbooks">
+        {allBooks.map((book) => (
+          <NavLink
+            to={`/book/${book.id}`}
+            key={book.id}
+            className="allbooks__container"
+          >
+            <BookContainer {...book} />
+          </NavLink>
+        ))}
+      </div>
+    </>
   );
 };
 export default AllBooks;

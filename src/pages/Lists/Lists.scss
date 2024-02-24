@@ -2,6 +2,10 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
+.title {
+  @include list-title;
+}
+
 .lists {
   @include flex($direction: column);
   @include tablet {

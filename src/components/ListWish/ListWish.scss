@@ -2,9 +2,9 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
-.title {
-  @include list-title;
-}
+// .title {
+//   @include list-title;
+// }
 
 .wishlist {
   @include block;
