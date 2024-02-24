@@ -112,13 +112,14 @@ const QuestionnaireForm = ({ setSubmitted, setAnswerBooks }) => {
         filterByTheme(filterByFiction(listAllBooks), answer.question2),
         answer.question3
       );
-
+      console.log(selectedBooks);
       setAnswerBooks(selectedBooks);
-      // localStorage.setItem("bookRecs", JSON.stringify(selectedBooks));
+
       const decoded = jwtDecode(token);
       try {
-        await axios.post(`${apiUrl}/letterbooks/list.recs`, {
-          book_id: selectedBooks.id,
+        await axios.post(`${apiUrl}/letterbooks/list/recs`, {
+          books: selectedBooks,
+
           user_id: decoded.id,
         });
       } catch (error) {
