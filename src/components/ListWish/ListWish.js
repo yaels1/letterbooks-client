@@ -13,21 +13,24 @@ const ListWish = () => {
   if (isError) return <h1>Something went wrong, please try again</h1>;
 
   return (
-    <div className="wishlist">
-      {wishlistBooks.length < 1 ? (
-        <EmptyList />
-      ) : (
-        wishlistBooks.map((book) => (
-          <Link
-            to={`/book/${book.id}`}
-            key={book.id}
-            className="wishlist__container"
-          >
-            <BookContainer {...book} />
-          </Link>
-        ))
-      )}
-    </div>
+    <>
+      <h2 className="title">Wishlist</h2>
+      <div className="wishlist">
+        {wishlistBooks.length < 1 ? (
+          <EmptyList />
+        ) : (
+          wishlistBooks.map((book) => (
+            <Link
+              to={`/book/${book.id}`}
+              key={book.id}
+              className="wishlist__container"
+            >
+              <BookContainer {...book} />
+            </Link>
+          ))
+        )}
+      </div>
+    </>
   );
 };
 

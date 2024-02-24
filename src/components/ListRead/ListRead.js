@@ -13,21 +13,24 @@ const ListRead = () => {
   if (isError) return <h1>Something went wrong, please try again</h1>;
 
   return (
-    <div className="read">
-      {readBooks.length < 1 ? (
-        <EmptyList />
-      ) : (
-        readBooks.map((book) => (
-          <Link
-            to={`/book/${book.id}`}
-            key={book.id}
-            className="read__container"
-          >
-            <BookContainer {...book} />
-          </Link>
-        ))
-      )}
-    </div>
+    <>
+      <h2 className="title">Read Books</h2>
+      <div className="read">
+        {readBooks.length < 1 ? (
+          <EmptyList />
+        ) : (
+          readBooks.map((book) => (
+            <Link
+              to={`/book/${book.id}`}
+              key={book.id}
+              className="read__container"
+            >
+              <BookContainer {...book} />
+            </Link>
+          ))
+        )}
+      </div>
+    </>
   );
 };
 export default ListRead;

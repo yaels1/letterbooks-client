@@ -78,3 +78,8 @@
   align-items: $align;
   gap: $gap;
 }
+
+@mixin list-title {
+  @include flex($justify: center);
+  font-size: 3rem;
+}
