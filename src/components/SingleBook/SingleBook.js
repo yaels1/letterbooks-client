@@ -2,15 +2,22 @@ import "./SingleBook.scss";
 import axios from "axios";
 import { useState } from "react";
 import useGetSingleBook from "../../hooks/useGetSingleBook";
+import RemoveBook from "../RemoveBook/RemoveBook";
 
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import useGetWishBook from "../../hooks/useGetWishBook";
+import useGetReadBook from "../../hooks/useGetReadBook";
+import useRemoveBooks from "../../hooks/useRemoveBooks";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 const SingleBook = () => {
   const { singleBook, isLoading, isError } = useGetSingleBook();
+  const { wishlistBooks, isLoadingWish, isErrorwWish } = useGetWishBook();
+  const { readBooks, isLoadingRead, isErrorRead } = useGetReadBook();
+  // const { deleteWishBook, isLoadingDeleteWish, isErrorDeleteWish } =
+  //   useRemoveBooks();
 
   const navigate = useNavigate();
   const token = localStorage.getItem("tokenlogin");
@@ -43,6 +50,18 @@ const SingleBook = () => {
     }
   };
 
+  const isPresentWish = () => {
+    if (singleBook && singleBook.id) {
+      wishlistBooks.some((wishlistBook) => wishlistBook.id === singleBook.id);
+    }
+  };
+
+  const isPresentRead = () => {
+    if (singleBook && singleBook.id) {
+      readBooks.some((readBook) => readBook.id === singleBook.id);
+    }
+  };
+
   const [loggedIn, setLoggedIn] = useState(() => {
     const token = localStorage.getItem("tokenlogin");
 
@@ -50,6 +69,7 @@ const SingleBook = () => {
   });
 
   if (isLoading) return <h1>Loading...</h1>;
+
   if (isError) return <h1>Something went wrong, please try again</h1>;
 
   return (
@@ -88,13 +108,25 @@ const SingleBook = () => {
             <p className=" book__summary">{singleBook.summary}</p>
           </div>
           <div className="book__buttons">
-            <button onClick={addBook} className="book__button">
-              <p className="book__button-text">MOVE TO READ BOOKS</p>
-            </button>
+            <div className="book__add">
+              {/* <button onClick={addBook} className="book__button">
+                <p className="book__button-text">
+                  {isPresentRead
+                    ? "REMOVE FROM READ BOOKS LIST"
+                    : "MOVE TO READ BOOKS LIST"}
+                </p>
+              </button> */}
+            </div>
 
-            <button onClick={addWishBook} className="book__button">
-              <p className="book__button-text">MOVE TO WISHLIST</p>
-            </button>
+            <div className=" book__wish">
+              {isPresentWish ? (
+                <RemoveBook singleBook={singleBook} />
+              ) : (
+                <button onClick={addWishBook} className="book__button">
+                  <p className="book__button-text">MOVE TO WISHLIST</p>
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
