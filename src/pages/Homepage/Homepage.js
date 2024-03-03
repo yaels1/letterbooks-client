@@ -1,19 +1,13 @@
 import "./Homepage.scss";
 import { NavLink } from "react-router-dom";
 import cosyPhoto from "../../assets/images/cosy-photo.jpg";
-import { useState } from "react";
+
+import useAuth from "../../hooks/useAuth";
 
 const HomePage = () => {
-  const [loggedIn, setLoggedIn] = useState(() => {
-    const token = localStorage.getItem("tokenlogin");
+  const { user, isAuthLoading, handleLogout } = useAuth();
 
-    return token?.length > 0;
-  });
-
-  const handleLogout = () => {
-    localStorage.removeItem("tokenlogin");
-    setLoggedIn(false);
-  };
+  if (isAuthLoading) return <h1>Loading...</h1>;
 
   return (
     <main className="homepage__main">
@@ -42,7 +36,7 @@ const HomePage = () => {
           />
         </div>
         <div className="homepage__nav">
-          {loggedIn && (
+          {user && (
             <>
               <NavLink to="/profile" className="homepage__nav-link">
                 <p className="homepage__nav-header">PROFILE</p>
@@ -60,7 +54,7 @@ const HomePage = () => {
             </>
           )}
 
-          {!loggedIn && (
+          {!user && (
             <NavLink to="/login" className="homepage__nav-link">
               <p className="homepage__nav-header">LOGIN</p>
             </NavLink>

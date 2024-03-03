@@ -1,18 +1,21 @@
 import "./Lists.scss";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+
+import useAuth from "../../hooks/useAuth";
+import SignedOut from "../../components/SignedOut/SignedOut";
 
 const Lists = () => {
-  const [loggedIn, setLoggedIn] = useState(() => {
-    const token = localStorage.getItem("tokenlogin");
-    return token?.length > 0;
-  });
+  const { user, failedAuth, isAuthLoading } = useAuth();
+  if (isAuthLoading) return <h1>Loading...</h1>;
+  if (failedAuth) {
+    return <SignedOut />;
+  }
 
   return (
     <main className="lists">
       <h1 className="lists__header">Lists</h1>
       <div className="list">
-        {!loggedIn && (
+        {!user && (
           <div className="list__container">
             <NavLink to="/list/book" className="list__title">
               <p>List of all books</p>
@@ -20,7 +23,7 @@ const Lists = () => {
           </div>
         )}
 
-        {loggedIn && (
+        {user && (
           <>
             <div className="list__container">
               <NavLink to="/list/book" className="list__title">

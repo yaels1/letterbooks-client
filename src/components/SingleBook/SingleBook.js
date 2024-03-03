@@ -11,12 +11,14 @@ const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 const SingleBook = () => {
   const { singleBook, isLoading, isError } = useGetSingleBook();
+  const { user } = useAuth();
 
   const navigate = useNavigate();
   const token = localStorage.getItem("tokenlogin");
 
+  const decoded = jwtDecode(token);
+
   const addBook = async () => {
-    const decoded = jwtDecode(token);
     try {
       await axios.post(`${apiUrl}/letterbooks/list/read`, {
         book_id: singleBook.id,
@@ -30,7 +32,7 @@ const SingleBook = () => {
   };
 
   const addWishBook = async () => {
-    const decoded = jwtDecode(token);
+    // const decoded = jwtDecode(token);
     try {
       await axios.post(`${apiUrl}/letterbooks/list/wishlist`, {
         book_id: singleBook.id,
@@ -43,18 +45,12 @@ const SingleBook = () => {
     }
   };
 
-  const [loggedIn, setLoggedIn] = useState(() => {
-    const token = localStorage.getItem("tokenlogin");
-
-    return token?.length > 0;
-  });
-
   if (isLoading) return <h1>Loading...</h1>;
   if (isError) return <h1>Something went wrong, please try again</h1>;
 
   return (
     <main>
-      {!loggedIn && (
+      {!user && (
         <div className="book">
           <div className="book__container">
             <div className="book__container-column">
@@ -72,7 +68,7 @@ const SingleBook = () => {
         </div>
       )}
 
-      {loggedIn && (
+      {user && (
         <div className="book">
           <div className="book__container">
             <div className="book__container-column">
