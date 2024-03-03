@@ -1,22 +1,21 @@
 import "./Profile.scss";
-import axios from "axios";
-import { useState, useEffect } from "react";
+
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 
 import SignedOut from "../../components/SignedOut/SignedOut";
+
 import happyBook from "../../assets/images/coffee-book.jpg";
 import happyFace from "../../assets/logo/happy-face.svg";
 import bookLogo from "../../assets/logo/books-stack-of-three (1).png";
 
-const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
-
 function Profile() {
-  const { user, failedAuth, handleLogout } = useAuth();
-
   const navigate = useNavigate();
+
+  const { user, failedAuth, isAuthLoading, handleLogout } = useAuth();
+  if (isAuthLoading) return <h1>Loading...</h1>;
 
   if (failedAuth) {
     return <SignedOut />;
