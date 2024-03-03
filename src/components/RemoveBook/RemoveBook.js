@@ -1,6 +1,7 @@
 import "./RemoveBook.scss";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 // import useRemoveBooks from "../../hooks/useRemoveBooks";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
@@ -12,6 +13,7 @@ const RemoveBook = ({ singleBook }) => {
   // if (isError) return <h1>Something went wrong, please try again</h1>;
   // console.log(singleBook);
 
+  const navigate = useNavigate();
   const deleteWishBook = async () => {
     const token = localStorage.getItem("tokenlogin");
     const decoded = jwtDecode(token);
@@ -20,6 +22,7 @@ const RemoveBook = ({ singleBook }) => {
         book_id: singleBook.id,
         user_id: decoded.id,
       });
+      navigate("/list/wishlist");
     } catch (error) {
       console.error(error);
     }
