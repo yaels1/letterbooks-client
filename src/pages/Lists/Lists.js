@@ -1,5 +1,5 @@
 import "./Lists.scss";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 import SignedOut from "../../components/SignedOut/SignedOut";
@@ -7,19 +7,30 @@ import SignedOut from "../../components/SignedOut/SignedOut";
 const Lists = () => {
   const { user, failedAuth, isAuthLoading } = useAuth();
   if (isAuthLoading) return <h1>Loading...</h1>;
-  if (failedAuth) {
-    return <SignedOut />;
-  }
 
   return (
     <main className="lists">
       <h1 className="lists__header">Lists</h1>
       <div className="list">
-        {!user && (
+        {!user && failedAuth && (
           <div className="list__container">
             <NavLink to="/list/book" className="list__title">
               <p>List of all books</p>
             </NavLink>
+
+            <div className="list__title">
+              <p>
+                Please{" "}
+                <span>
+                  {" "}
+                  <Link to="/login" className="list__title-login">
+                    {" "}
+                    login
+                  </Link>
+                </span>{" "}
+                to see more{" "}
+              </p>
+            </div>
           </div>
         )}
 

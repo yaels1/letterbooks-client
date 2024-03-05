@@ -1,25 +1,27 @@
 import "./SingleBook.scss";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGetSingleBook from "../../hooks/useGetSingleBook";
 import useGetWishBook from "../../hooks/useGetWishBook";
 import useGetReadBook from "../../hooks/useGetReadBook";
-import useRemoveBooks from "../../hooks/useRemoveBooks";
 
 import RemoveBook from "../RemoveBook/RemoveBook";
 
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { type } from "@testing-library/user-event/dist/type";
 
 const apiUrl = process.env.REACT_APP_API_URL + process.env.REACT_APP_API_PORT;
 
 const SingleBook = () => {
   const { singleBook, isLoading, isError } = useGetSingleBook();
-  const { wishlistBooks, isLoadingWish, isErrorwWish } = useGetWishBook();
-  const { readBooks, isLoadingRead, isErrorRead } = useGetReadBook();
-  // const { deleteWishBook, isLoadingDeleteWish, isErrorDeleteWish } =
-  //   useRemoveBooks();
+  const { wishlistBooks } = useGetWishBook();
+  const { readBooks } = useGetReadBook();
+  const [isDelete, setIsDelete] = useState(false);
+  const [isPresentRead, setIsPresentRead] = useState(undefined);
+  const [isPresentWish, setIsPresentWish] = useState(undefined);
+  const [isPresentLoading, setIsPresentLoading] = useState(true);
 
   const { user } = useAuth();
 
@@ -42,7 +44,6 @@ const SingleBook = () => {
   };
 
   const addWishBook = async () => {
-    // const decoded = jwtDecode(token);
     try {
       await axios.post(`${apiUrl}/letterbooks/list/wishlist`, {
         book_id: singleBook.id,
@@ -55,23 +56,50 @@ const SingleBook = () => {
     }
   };
 
-  const isPresentWish = () => {
-    if (singleBook && singleBook.id) {
-      wishlistBooks.some((wishlistBook) => wishlistBook.id === singleBook.id);
-    }
+  const handleDelete = (singleBook) => {
+    setIsDelete(true);
   };
 
-  const isPresentRead = () => {
-    if (singleBook && singleBook.id) {
-      readBooks.some((readBook) => readBook.id === singleBook.id);
-    }
+  const handleClose = () => {
+    setIsDelete(false);
   };
 
-  const [loggedIn, setLoggedIn] = useState(() => {
+  const deleteWishBook = async () => {
     const token = localStorage.getItem("tokenlogin");
+    const decoded = jwtDecode(token);
+    try {
+      await axios.delete(`${apiUrl}/letterbooks/list/wishlist`, {
+        book_id: singleBook.id,
+        user_id: decoded.id,
+      });
+      handleClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    return token?.length > 0;
-  });
+  const deleteReadBook = async () => {
+    const token = localStorage.getItem("tokenlogin");
+    const decoded = jwtDecode(token);
+    try {
+      await axios.delete(`${apiUrl}/letterbooks/list/${decoded.id}/read`, {
+        book_id: singleBook.id,
+        user_id: decoded.id,
+      });
+      handleClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteBoth = deleteReadBook && deleteWishBook;
+
+  useEffect(() => {
+    setIsPresentRead(readBooks?.some((book) => book.id === singleBook.id));
+    setIsPresentWish(wishlistBooks?.some((book) => book.id === singleBook.id));
+    setIsPresentLoading(false);
+    console.log(isPresentWish);
+  }, [singleBook, readBooks, wishlistBooks]);
 
   if (isLoading) return <h1>Loading...</h1>;
 
@@ -111,28 +139,57 @@ const SingleBook = () => {
               </div>
             </div>
             <p className=" book__summary">{singleBook.summary}</p>
+            {isLoading && <p>Loading book information...</p>}
           </div>
-          <div className="book__buttons">
-            <div className="book__add">
-              {/* <button onClick={addBook} className="book__button">
-                <p className="book__button-text">
-                  {isPresentRead
-                    ? "REMOVE FROM READ BOOKS LIST"
-                    : "MOVE TO READ BOOKS LIST"}
-                </p>
-              </button> */}
-            </div>
 
-            <div className=" book__wish">
-              {isPresentWish ? (
-                <RemoveBook singleBook={singleBook} />
-              ) : (
-                <button onClick={addWishBook} className="book__button">
-                  <p className="book__button-text">MOVE TO WISHLIST</p>
-                </button>
-              )}
+          {!isLoading && (
+            <div className="book__buttons">
+              <div className="book__read">
+                {/* Button to move to read list*/}
+                {!isPresentRead && (
+                  <button onClick={addBook} className="book__button">
+                    <p className="book__button-text">Main MOVE TO READ BOOKS</p>
+                  </button>
+                )}
+                {/* Remove book from read list */}
+                {isPresentRead && (
+                  <>
+                    <p>this book is in the readbooks list</p>
+                    <RemoveBook
+                      singleBook={singleBook}
+                      list="read"
+                      handleClose={handleClose}
+                      isDelete={isDelete}
+                      process={deleteReadBook}
+                    />
+                  </>
+                )}
+              </div>
+
+              <div className="book__wish">
+                {/* Button to move to wishlist  */}
+                {!isPresentWish && (
+                  <button onClick={addWishBook} className="book__button">
+                    <p className="book__button-text">Main MOVE TO WISHLIST</p>
+                  </button>
+                )}
+                {/* Button to delete from wishlist */}
+
+                {isPresentWish && (
+                  <>
+                    <p>this book is in the wishlist</p>
+                    <RemoveBook
+                      singleBook={singleBook}
+                      list={isPresentRead ? "both" : "wish"}
+                      process={deleteWishBook}
+                      handleClose={handleClose}
+                      isDelete={isDelete}
+                    />
+                  </>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </main>
@@ -140,3 +197,59 @@ const SingleBook = () => {
 };
 
 export default SingleBook;
+
+{
+  /* <div className="book__buttons">
+            <div className="book__read">
+              {inRead && inBoth() ? (
+                <RemoveBook
+                  singleBook={singleBook}
+                  list="read"
+                  handleClose={handleClose}
+                  isDelete={isDelete}
+                  process={deleteReadBook}
+                />
+              ) : (
+                <button onClick={addBook} className="book__button">
+                  <p className="book__button-text">main MOVE TO READ BOOKS</p>
+                </button>
+              )}
+            </div>
+
+            <div className=" book__wish">
+              {inWish ? (
+                <RemoveBook
+                  singleBook={singleBook}
+                  list="wish"
+                  process={deleteWishBook}
+                  handleClose={handleClose}
+                  isDelete={isDelete}
+                />
+              ) : (
+                <button onClick={addWishBook} className="book__button">
+                  <p className="book__button-text">main MOVE TO WISHLIST</p>
+                </button>
+              )}
+            </div>
+          </div> */
+}
+
+// const inNeither = () => {
+//   if (!isPresentWish && !isPresentRead) {
+//   }
+// };
+
+// const inRead = () => {
+//   if (!isPresentWish && isPresentRead) {
+//   }
+// };
+
+// const inWish = () => {
+//   if (isPresentWish && !isPresentRead) {
+//   }
+// };
+
+// const inBoth = () => {
+//   if (isPresentWish && isPresentRead) {
+//   }
+// };

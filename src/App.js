@@ -13,6 +13,7 @@ import ListRead from "./components/ListRead/ListRead";
 import ListWish from "./components/ListWish/ListWish";
 import Questionnaire from "./pages/Questionnaire/Questionnaire";
 import ListRecommendation from "./components/ListRecommendation/ListRecommendation";
+import RemoveBook from "./components/RemoveBook/RemoveBook";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/list/wishlist" element={<ListWish />} />
         <Route path="/questionnaire" element={<Questionnaire />} />
         <Route path="/list/recommendations" element={<ListRecommendation />} />
+        <Route path="remove" element={<RemoveBook />} />
         <Route path="/*" element={<div>page not found</div>} />
       </Routes>
     </BrowserRouter>

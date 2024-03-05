@@ -29,7 +29,7 @@
   padding-inline: 1rem;
 
   &__container {
-    @include flex;
+    @include flex($direction: column);
     margin-inline: 1rem;
   }
 
@@ -52,6 +52,12 @@
 
     @include desktop {
       font-size: 3rem;
+    }
+    &-login {
+      @include link;
+      &:hover {
+        color: black;
+      }
     }
   }
 }
