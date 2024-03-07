@@ -1,0 +1,20 @@
+@use "../../styles//partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+.search {
+  &__title {
+    @include list-title;
+  }
+  &__form {
+    @include flex($justify: space-around);
+  }
+  &__results {
+    @include flex($justify: space-around, $direction: column);
+
+    &-container {
+      border: 2px solid red;
+      width: 100%;
+    }
+  }
+}
