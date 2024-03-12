@@ -8,7 +8,6 @@ const SearchResults = ({ searchTerm }) => {
   const filterBooks = () => {
     if (!allBooks) return;
 
-    console.log(allBooks);
     const filteredBooks = allBooks.filter((book) => {
       const lowerCaseBookTitle = book.title.toLowerCase();
       const lowerCaseBookAuthor = book.name.toLowerCase();
@@ -33,19 +32,24 @@ const SearchResults = ({ searchTerm }) => {
   if (isError) return <h1>Something went wrong, please try again</h1>;
 
   console.log(searchTerm);
+  console.log(filteredBooks);
 
   return (
     <div className="search-results">
       {/* Title Results */}
       {filteredBooks.length > 0 && <h2>Results for {searchTerm}:</h2>}
-      {filteredBooks.map((book) => (
-        <div key={book.id} className="search-results__book">
-          <img src={book.image} />
-        </div>
-      ))}
+      <div className="search-results__container">
+        {filteredBooks.map((book) => (
+          <div key={book.id} className="search-results__book">
+            <img className="search-results__image" src={book.image} />
+          </div>
+        ))}
+      </div>
 
       {/* No results message */}
-      {!filterBooks && <p>No results found for your search.</p>}
+      {(!filteredBooks || filteredBooks.length === 0) && (
+        <p>No results found for your search.</p>
+      )}
     </div>
   );
 };

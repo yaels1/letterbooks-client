@@ -3,12 +3,31 @@
 @use "../../styles/partials/mixins" as *;
 
 .search {
+  @include tablet {
+    margin-inline: $tablet-margin;
+  }
+
+  @include desktop {
+    max-width: $desktop-width;
+    margin: auto;
+  }
+
   &__title {
     @include list-title;
   }
   &__form {
-    @include flex($justify: space-around);
+    @include flex($justify: space-around, $direction: column);
   }
+
+  &__form-box {
+    @include flex($direction: row);
+    padding: 1rem;
+  }
+
+  &__form-container {
+    padding: 1rem;
+  }
+
   &__results {
     @include flex($justify: space-around, $direction: column);
 
