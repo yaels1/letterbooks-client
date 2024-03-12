@@ -1,6 +1,7 @@
 import "./SearchResults.scss";
 import useGetBooks from "../../hooks/useGetBooks";
 import BookContainer from "../BookContainer/BookContainer";
+import { Link } from "react-router-dom";
 
 const SearchResults = ({ searchTerm }) => {
   const { allBooks, isLoading, isError } = useGetBooks();
@@ -40,9 +41,13 @@ const SearchResults = ({ searchTerm }) => {
       {filteredBooks.length > 0 && <h2>Results for {searchTerm}:</h2>}
       <div className="search-results__container">
         {filteredBooks.map((book) => (
-          <div key={book.id} className="search-results__book">
+          <Link
+            to={`/book/${book.id}`}
+            key={book.id}
+            className="search-results__book"
+          >
             <img className="search-results__image" src={book.image} />
-          </div>
+          </Link>
         ))}
       </div>
 

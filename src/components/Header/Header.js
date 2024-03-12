@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import "./Header.scss";
 import logo from "../../assets/logo/books-stack-of-three (1).png";
+import search from "../../assets/logo/search.png";
 
 const Header = () => {
   return (
@@ -18,6 +19,12 @@ const Header = () => {
         <NavLink to="/profile" className="nav__header">
           PROFILE
         </NavLink>
+
+        <NavLink to="/search" className="nav__header nav__header-search">
+          <img className="nav__header-icon" src={search} />
+          SEARCH
+        </NavLink>
+
         <NavLink to="/list" className="nav__header">
           LISTS
         </NavLink>

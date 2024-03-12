@@ -76,5 +76,13 @@
     @include desktop {
       font-size: 2rem;
     }
+
+    &-search {
+      @include flex;
+    }
+  }
+
+  &__header-icon {
+    width: 2rem;
   }
 }
